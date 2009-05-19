@@ -1,0 +1,9 @@
+Main code has high complexity score (36) at line 1, column 1. Consider refactoring.
+Code not contained in explicit package at line 1, column 1. Violates encapsulation.
+Variable declared as "local" at line 9, column 1. See pages 77,78,79 of PBP.
+-1 is not one of the allowed literal values (0, 1, 2). Use the Readonly module or the "constant" pragma instead at line 80, column 41. Unnamed numeric literals make code less maintainable.
+Quotes used with a noisy string at line 144, column 18. See page 53 of PBP.
+Quotes used with a noisy string at line 149, column 18. See page 53 of PBP.
+Quotes used with an empty string at line 160, column 18. See page 53 of PBP.
+10 is not one of the allowed literal values (0, 1, 2). Use the Readonly module or the "constant" pragma instead at line 166, column 21. Unnamed numeric literals make code less maintainable.
+1900 is not one of the allowed literal values (0, 1, 2). Use the Readonly module or the "constant" pragma instead at line 252, column 16. Unnamed numeric literals make code less maintainable.

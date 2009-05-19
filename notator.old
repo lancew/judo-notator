@@ -172,7 +172,7 @@ while ($run_flag) {
     print "$events";
 
 }
-ReadMode 'restore';
+ReadMode 0;
 
 PrintResults();
 

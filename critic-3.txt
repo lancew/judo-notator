@@ -1,0 +1,2 @@
+Main code has high complexity score (36) at line 1, column 1. Consider refactoring.
+Code not contained in explicit package at line 1, column 1. Violates encapsulation.

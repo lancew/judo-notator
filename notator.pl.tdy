@@ -1,10 +1,9 @@
 use strict;
 use warnings;
-
 use English qw( -no_match_vars );
 use version;
 use Term::ReadKey;
-ReadMode 'raw';
+ReadMode 4;
 
 local $OUTPUT_AUTOFLUSH = 1;
 
@@ -170,9 +169,8 @@ while ($run_flag) {
         print "\b";
     }
     print "$events";
-
 }
-ReadMode 'restore';
+ReadMode 0;
 
 PrintResults();
 
@@ -213,7 +211,7 @@ sub DisplayWelcome {
     print
 "-------------------------------------------------------------------------------\n";
     print "  Events:  ";
-    return;
+
 }
 
 sub ResetCounters {
@@ -236,7 +234,7 @@ sub ResetCounters {
     $white_Penalty   = 0;
 
     $events = 0;
-    return;
+
 }
 
 sub PrintResults {
@@ -245,13 +243,13 @@ sub PrintResults {
     my @months   = qw(Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec);
     my @weekDays = qw(Sun Mon Tue Wed Thu Fri Sat Sun);
     my (
-        $seconds,    $minute,    $hour,
+        $second,     $minute,    $hour,
         $dayOfMonth, $month,     $yearOffset,
         $dayOfWeek,  $dayOfYear, $daylightSavings
     ) = localtime();
     my $year = 1900 + $yearOffset;
     my $theTime =
-"$hour:$minute:$seconds, $weekDays[$dayOfWeek] $months[$month] $dayOfMonth, $year";
+"$hour:$minute:$second, $weekDays[$dayOfWeek] $months[$month] $dayOfMonth, $year";
     print "Notation Time and Date\n$theTime\n\n";
 
     print "Segments: $segments\n";
@@ -271,7 +269,6 @@ sub PrintResults {
     print "Wazari: $white_Wazari\n";
     print "Ippon: $white_Ippon\n";
     print "Penalty: $white_Penalty\n\n\n";
-    return;
+
 }
 
-1;
