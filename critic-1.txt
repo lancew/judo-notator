@@ -1,108 +1,109 @@
-Main code has high complexity score (36) at line 1, column 1. Consider refactoring.
 Code not contained in explicit package at line 1, column 1. Violates encapsulation.
-Variable declared as "local" at line 9, column 1. See pages 77,78,79 of PBP.
-Subroutine "DisplayWelcome" is not all lower case or all upper case at line 42, column 1. See pages 45,46 of PBP.
-Subroutine "ResetCounters" is not all lower case or all upper case at line 43, column 1. See pages 45,46 of PBP.
-Subroutine "PrintResults" is not all lower case or all upper case at line 44, column 1. See pages 45,46 of PBP.
-File lexical variable "$blue_Attack" is not all lower case or all upper case at line 55, column 1. See pages 45,46 of PBP.
-File lexical variable "$blue_EffAttack" is not all lower case or all upper case at line 56, column 1. See pages 45,46 of PBP.
-File lexical variable "$blue_Koka" is not all lower case or all upper case at line 57, column 1. See pages 45,46 of PBP.
-File lexical variable "$blue_Yuko" is not all lower case or all upper case at line 58, column 1. See pages 45,46 of PBP.
-File lexical variable "$blue_Wazari" is not all lower case or all upper case at line 59, column 1. See pages 45,46 of PBP.
-File lexical variable "$blue_Ippon" is not all lower case or all upper case at line 60, column 1. See pages 45,46 of PBP.
-File lexical variable "$blue_Penalty" is not all lower case or all upper case at line 61, column 1. See pages 45,46 of PBP.
-File lexical variable "$white_Attack" is not all lower case or all upper case at line 63, column 1. See pages 45,46 of PBP.
-File lexical variable "$white_EffAttack" is not all lower case or all upper case at line 64, column 1. See pages 45,46 of PBP.
-File lexical variable "$white_Koka" is not all lower case or all upper case at line 65, column 1. See pages 45,46 of PBP.
-File lexical variable "$white_Yuko" is not all lower case or all upper case at line 66, column 1. See pages 45,46 of PBP.
-File lexical variable "$white_Wazari" is not all lower case or all upper case at line 67, column 1. See pages 45,46 of PBP.
-File lexical variable "$white_Ippon" is not all lower case or all upper case at line 68, column 1. See pages 45,46 of PBP.
-File lexical variable "$white_Penalty" is not all lower case or all upper case at line 69, column 1. See pages 45,46 of PBP.
--1 is not one of the allowed literal values (0, 1, 2). Use the Readonly module or the "constant" pragma instead at line 80, column 41. Unnamed numeric literals make code less maintainable.
-Useless interpolation of literal string at line 84, column 18. See page 51 of PBP.
-Useless interpolation of literal string at line 84, column 33. See page 51 of PBP.
-Useless interpolation of literal string at line 88, column 18. See page 51 of PBP.
-Useless interpolation of literal string at line 88, column 33. See page 51 of PBP.
-Useless interpolation of literal string at line 93, column 18. See page 51 of PBP.
-Useless interpolation of literal string at line 93, column 33. See page 51 of PBP.
-Useless interpolation of literal string at line 98, column 18. See page 51 of PBP.
-Useless interpolation of literal string at line 98, column 33. See page 51 of PBP.
-Useless interpolation of literal string at line 103, column 18. See page 51 of PBP.
-Useless interpolation of literal string at line 103, column 33. See page 51 of PBP.
-Useless interpolation of literal string at line 108, column 18. See page 51 of PBP.
-Useless interpolation of literal string at line 108, column 33. See page 51 of PBP.
-Useless interpolation of literal string at line 113, column 18. See page 51 of PBP.
-Useless interpolation of literal string at line 113, column 33. See page 51 of PBP.
-Useless interpolation of literal string at line 118, column 18. See page 51 of PBP.
-Useless interpolation of literal string at line 118, column 33. See page 51 of PBP.
-Useless interpolation of literal string at line 124, column 18. See page 51 of PBP.
-Useless interpolation of literal string at line 124, column 33. See page 51 of PBP.
-Useless interpolation of literal string at line 129, column 18. See page 51 of PBP.
-Useless interpolation of literal string at line 129, column 33. See page 51 of PBP.
-Useless interpolation of literal string at line 134, column 18. See page 51 of PBP.
-Useless interpolation of literal string at line 134, column 33. See page 51 of PBP.
-Useless interpolation of literal string at line 139, column 18. See page 51 of PBP.
-Useless interpolation of literal string at line 139, column 33. See page 51 of PBP.
-Useless interpolation of literal string at line 144, column 18. See page 51 of PBP.
-Quotes used with a noisy string at line 144, column 18. See page 53 of PBP.
-Useless interpolation of literal string at line 144, column 33. See page 51 of PBP.
-Useless interpolation of literal string at line 149, column 18. See page 51 of PBP.
-Quotes used with a noisy string at line 149, column 18. See page 53 of PBP.
-Useless interpolation of literal string at line 149, column 33. See page 51 of PBP.
-Useless interpolation of literal string at line 154, column 18. See page 51 of PBP.
-Useless interpolation of literal string at line 154, column 33. See page 51 of PBP.
-Quotes used with an empty string at line 160, column 18. See page 53 of PBP.
-Useless interpolation of literal string at line 160, column 18. See page 51 of PBP.
-10 is not one of the allowed literal values (0, 1, 2). Use the Readonly module or the "constant" pragma instead at line 166, column 21. Unnamed numeric literals make code less maintainable.
-Return value of flagged function ignored - print at line 167, column 9. See pages 208,278 of PBP.
-Return value of flagged function ignored - print at line 170, column 9. See pages 208,278 of PBP.
-Return value of flagged function ignored - print at line 172, column 5. See pages 208,278 of PBP.
-Subroutine "DisplayWelcome" is not all lower case or all upper case at line 183, column 1. See pages 45,46 of PBP.
-Return value of flagged function ignored - print at line 184, column 5. See pages 208,278 of PBP.
-Return value of flagged function ignored - print at line 185, column 5. See pages 208,278 of PBP.
-Return value of flagged function ignored - print at line 187, column 5. See pages 208,278 of PBP.
-Return value of flagged function ignored - print at line 189, column 5. See pages 208,278 of PBP.
-Return value of flagged function ignored - print at line 191, column 5. See pages 208,278 of PBP.
-Return value of flagged function ignored - print at line 193, column 5. See pages 208,278 of PBP.
-Return value of flagged function ignored - print at line 195, column 5. See pages 208,278 of PBP.
-Return value of flagged function ignored - print at line 197, column 5. See pages 208,278 of PBP.
-Return value of flagged function ignored - print at line 199, column 5. See pages 208,278 of PBP.
-Return value of flagged function ignored - print at line 201, column 5. See pages 208,278 of PBP.
-Return value of flagged function ignored - print at line 203, column 5. See pages 208,278 of PBP.
-Return value of flagged function ignored - print at line 205, column 5. See pages 208,278 of PBP.
-Return value of flagged function ignored - print at line 207, column 5. See pages 208,278 of PBP.
-Return value of flagged function ignored - print at line 209, column 5. See pages 208,278 of PBP.
-Return value of flagged function ignored - print at line 211, column 5. See pages 208,278 of PBP.
-Return value of flagged function ignored - print at line 213, column 5. See pages 208,278 of PBP.
-Return value of flagged function ignored - print at line 215, column 5. See pages 208,278 of PBP.
-Useless interpolation of literal string at line 215, column 11. See page 51 of PBP.
-Subroutine "ResetCounters" is not all lower case or all upper case at line 219, column 1. See pages 45,46 of PBP.
-Subroutine "PrintResults" is not all lower case or all upper case at line 242, column 1. See pages 45,46 of PBP.
-Return value of flagged function ignored - print at line 243, column 5. See pages 208,278 of PBP.
-Local lexical variable "@weekDays" is not all lower case or all upper case at line 246, column 5. See pages 45,46 of PBP.
-Local lexical variable "$dayOfMonth" is not all lower case or all upper case at line 247, column 5. See pages 45,46 of PBP.
-Local lexical variable "$yearOffset" is not all lower case or all upper case at line 247, column 5. See pages 45,46 of PBP.
-Local lexical variable "$dayOfWeek" is not all lower case or all upper case at line 247, column 5. See pages 45,46 of PBP.
-Local lexical variable "$dayOfYear" is not all lower case or all upper case at line 247, column 5. See pages 45,46 of PBP.
-Local lexical variable "$daylightSavings" is not all lower case or all upper case at line 247, column 5. See pages 45,46 of PBP.
-Builtin function called with parentheses at line 251, column 9. See page 13 of PBP.
-1900 is not one of the allowed literal values (0, 1, 2). Use the Readonly module or the "constant" pragma instead at line 252, column 16. Unnamed numeric literals make code less maintainable.
-Local lexical variable "$theTime" is not all lower case or all upper case at line 253, column 5. See pages 45,46 of PBP.
-Return value of flagged function ignored - print at line 255, column 5. See pages 208,278 of PBP.
-Return value of flagged function ignored - print at line 257, column 5. See pages 208,278 of PBP.
-Return value of flagged function ignored - print at line 258, column 5. See pages 208,278 of PBP.
-Return value of flagged function ignored - print at line 259, column 5. See pages 208,278 of PBP.
-Return value of flagged function ignored - print at line 260, column 5. See pages 208,278 of PBP.
-Return value of flagged function ignored - print at line 261, column 5. See pages 208,278 of PBP.
-Return value of flagged function ignored - print at line 262, column 5. See pages 208,278 of PBP.
-Return value of flagged function ignored - print at line 263, column 5. See pages 208,278 of PBP.
-Return value of flagged function ignored - print at line 264, column 5. See pages 208,278 of PBP.
-Return value of flagged function ignored - print at line 265, column 5. See pages 208,278 of PBP.
-Return value of flagged function ignored - print at line 266, column 5. See pages 208,278 of PBP.
-Return value of flagged function ignored - print at line 267, column 5. See pages 208,278 of PBP.
-Return value of flagged function ignored - print at line 268, column 5. See pages 208,278 of PBP.
-Return value of flagged function ignored - print at line 269, column 5. See pages 208,278 of PBP.
-Return value of flagged function ignored - print at line 270, column 5. See pages 208,278 of PBP.
-Return value of flagged function ignored - print at line 271, column 5. See pages 208,278 of PBP.
-Return value of flagged function ignored - print at line 272, column 5. See pages 208,278 of PBP.
-Return value of flagged function ignored - print at line 273, column 5. See pages 208,278 of PBP.
+Variable declared as "local" at line 11, column 1. See pages 77,78,79 of PBP.
+Subroutine "DisplayWelcome" is not all lower case or all upper case at line 44, column 1. See pages 45,46 of PBP.
+Subroutine "ResetCounters" is not all lower case or all upper case at line 45, column 1. See pages 45,46 of PBP.
+Subroutine "PrintResults" is not all lower case or all upper case at line 46, column 1. See pages 45,46 of PBP.
+File lexical variable "$blue_Attack" is not all lower case or all upper case at line 57, column 1. See pages 45,46 of PBP.
+File lexical variable "$blue_EffAttack" is not all lower case or all upper case at line 58, column 1. See pages 45,46 of PBP.
+File lexical variable "$blue_Koka" is not all lower case or all upper case at line 59, column 1. See pages 45,46 of PBP.
+File lexical variable "$blue_Yuko" is not all lower case or all upper case at line 60, column 1. See pages 45,46 of PBP.
+File lexical variable "$blue_Wazari" is not all lower case or all upper case at line 61, column 1. See pages 45,46 of PBP.
+File lexical variable "$blue_Ippon" is not all lower case or all upper case at line 62, column 1. See pages 45,46 of PBP.
+File lexical variable "$blue_Penalty" is not all lower case or all upper case at line 63, column 1. See pages 45,46 of PBP.
+File lexical variable "$white_Attack" is not all lower case or all upper case at line 65, column 1. See pages 45,46 of PBP.
+File lexical variable "$white_EffAttack" is not all lower case or all upper case at line 66, column 1. See pages 45,46 of PBP.
+File lexical variable "$white_Koka" is not all lower case or all upper case at line 67, column 1. See pages 45,46 of PBP.
+File lexical variable "$white_Yuko" is not all lower case or all upper case at line 68, column 1. See pages 45,46 of PBP.
+File lexical variable "$white_Wazari" is not all lower case or all upper case at line 69, column 1. See pages 45,46 of PBP.
+File lexical variable "$white_Ippon" is not all lower case or all upper case at line 70, column 1. See pages 45,46 of PBP.
+File lexical variable "$white_Penalty" is not all lower case or all upper case at line 71, column 1. See pages 45,46 of PBP.
+-1 is not one of the allowed literal values (0, 1, 2). Use the Readonly module or the "constant" pragma instead at line 82, column 41. Unnamed numeric literals make code less maintainable.
+Useless interpolation of literal string at line 88, column 14. See page 51 of PBP.
+Useless interpolation of literal string at line 89, column 14. See page 51 of PBP.
+Useless interpolation of literal string at line 90, column 14. See page 51 of PBP.
+Useless interpolation of literal string at line 91, column 14. See page 51 of PBP.
+Useless interpolation of literal string at line 92, column 14. See page 51 of PBP.
+Useless interpolation of literal string at line 93, column 14. See page 51 of PBP.
+Useless interpolation of literal string at line 94, column 14. See page 51 of PBP.
+Useless interpolation of literal string at line 95, column 14. See page 51 of PBP.
+Useless interpolation of literal string at line 96, column 14. See page 51 of PBP.
+Useless interpolation of literal string at line 97, column 14. See page 51 of PBP.
+Useless interpolation of literal string at line 98, column 14. See page 51 of PBP.
+Useless interpolation of literal string at line 99, column 14. See page 51 of PBP.
+Useless interpolation of literal string at line 100, column 14. See page 51 of PBP.
+Useless interpolation of literal string at line 101, column 14. See page 51 of PBP.
+Useless interpolation of literal string at line 102, column 14. See page 51 of PBP.
+Useless interpolation of literal string at line 103, column 14. See page 51 of PBP.
+Useless interpolation of literal string at line 104, column 14. See page 51 of PBP.
+Useless interpolation of literal string at line 105, column 14. See page 51 of PBP.
+Useless interpolation of literal string at line 106, column 14. See page 51 of PBP.
+Useless interpolation of literal string at line 107, column 14. See page 51 of PBP.
+Useless interpolation of literal string at line 108, column 14. See page 51 of PBP.
+Useless interpolation of literal string at line 109, column 14. See page 51 of PBP.
+Useless interpolation of literal string at line 110, column 14. See page 51 of PBP.
+Useless interpolation of literal string at line 111, column 14. See page 51 of PBP.
+Useless interpolation of literal string at line 112, column 14. See page 51 of PBP.
+Quotes used with a noisy string at line 112, column 14. See page 53 of PBP.
+Useless interpolation of literal string at line 113, column 14. See page 51 of PBP.
+Useless interpolation of literal string at line 114, column 14. See page 51 of PBP.
+Quotes used with a noisy string at line 114, column 14. See page 53 of PBP.
+Useless interpolation of literal string at line 115, column 14. See page 51 of PBP.
+Useless interpolation of literal string at line 116, column 14. See page 51 of PBP.
+Useless interpolation of literal string at line 117, column 14. See page 51 of PBP.
+Quotes used with an empty string at line 118, column 14. See page 53 of PBP.
+Useless interpolation of literal string at line 118, column 14. See page 51 of PBP.
+Postfix control "if" used at line 122, column 5. See pages 93,94 of PBP.
+10 is not one of the allowed literal values (0, 1, 2). Use the Readonly module or the "constant" pragma instead at line 122, column 21. Unnamed numeric literals make code less maintainable.
+Return value of flagged function ignored - print at line 123, column 9. See pages 208,278 of PBP.
+Return value of flagged function ignored - print at line 126, column 9. See pages 208,278 of PBP.
+Subroutine "DisplayWelcome" is not all lower case or all upper case at line 139, column 1. See pages 45,46 of PBP.
+Return value of flagged function ignored - print at line 140, column 5. See pages 208,278 of PBP.
+Return value of flagged function ignored - print at line 141, column 5. See pages 208,278 of PBP.
+Return value of flagged function ignored - print at line 143, column 5. See pages 208,278 of PBP.
+Return value of flagged function ignored - print at line 145, column 5. See pages 208,278 of PBP.
+Return value of flagged function ignored - print at line 147, column 5. See pages 208,278 of PBP.
+Return value of flagged function ignored - print at line 149, column 5. See pages 208,278 of PBP.
+Return value of flagged function ignored - print at line 151, column 5. See pages 208,278 of PBP.
+Return value of flagged function ignored - print at line 153, column 5. See pages 208,278 of PBP.
+Return value of flagged function ignored - print at line 155, column 5. See pages 208,278 of PBP.
+Return value of flagged function ignored - print at line 157, column 5. See pages 208,278 of PBP.
+Return value of flagged function ignored - print at line 159, column 5. See pages 208,278 of PBP.
+Return value of flagged function ignored - print at line 161, column 5. See pages 208,278 of PBP.
+Return value of flagged function ignored - print at line 163, column 5. See pages 208,278 of PBP.
+Return value of flagged function ignored - print at line 165, column 5. See pages 208,278 of PBP.
+Return value of flagged function ignored - print at line 167, column 5. See pages 208,278 of PBP.
+Return value of flagged function ignored - print at line 169, column 5. See pages 208,278 of PBP.
+Return value of flagged function ignored - print at line 171, column 5. See pages 208,278 of PBP.
+Return value of flagged function ignored - print at line 174, column 5. See pages 208,278 of PBP.
+Return value of flagged function ignored - print at line 176, column 5. See pages 208,278 of PBP.
+Useless interpolation of literal string at line 176, column 11. See page 51 of PBP.
+Subroutine "ResetCounters" is not all lower case or all upper case at line 180, column 1. See pages 45,46 of PBP.
+Subroutine "PrintResults" is not all lower case or all upper case at line 203, column 1. See pages 45,46 of PBP.
+Return value of flagged function ignored - print at line 204, column 5. See pages 208,278 of PBP.
+Local lexical variable "@weekDays" is not all lower case or all upper case at line 207, column 5. See pages 45,46 of PBP.
+Local lexical variable "$dayOfMonth" is not all lower case or all upper case at line 208, column 5. See pages 45,46 of PBP.
+Local lexical variable "$yearOffset" is not all lower case or all upper case at line 208, column 5. See pages 45,46 of PBP.
+Local lexical variable "$dayOfWeek" is not all lower case or all upper case at line 208, column 5. See pages 45,46 of PBP.
+Local lexical variable "$dayOfYear" is not all lower case or all upper case at line 208, column 5. See pages 45,46 of PBP.
+Local lexical variable "$daylightSavings" is not all lower case or all upper case at line 208, column 5. See pages 45,46 of PBP.
+Builtin function called with parentheses at line 212, column 9. See page 13 of PBP.
+1900 is not one of the allowed literal values (0, 1, 2). Use the Readonly module or the "constant" pragma instead at line 213, column 16. Unnamed numeric literals make code less maintainable.
+Local lexical variable "$theTime" is not all lower case or all upper case at line 214, column 5. See pages 45,46 of PBP.
+Return value of flagged function ignored - print at line 216, column 5. See pages 208,278 of PBP.
+Return value of flagged function ignored - print at line 218, column 5. See pages 208,278 of PBP.
+Return value of flagged function ignored - print at line 219, column 5. See pages 208,278 of PBP.
+Return value of flagged function ignored - print at line 220, column 5. See pages 208,278 of PBP.
+Return value of flagged function ignored - print at line 221, column 5. See pages 208,278 of PBP.
+Return value of flagged function ignored - print at line 222, column 5. See pages 208,278 of PBP.
+Return value of flagged function ignored - print at line 223, column 5. See pages 208,278 of PBP.
+Return value of flagged function ignored - print at line 224, column 5. See pages 208,278 of PBP.
+Return value of flagged function ignored - print at line 225, column 5. See pages 208,278 of PBP.
+Return value of flagged function ignored - print at line 226, column 5. See pages 208,278 of PBP.
+Return value of flagged function ignored - print at line 227, column 5. See pages 208,278 of PBP.
+Return value of flagged function ignored - print at line 228, column 5. See pages 208,278 of PBP.
+Return value of flagged function ignored - print at line 229, column 5. See pages 208,278 of PBP.
+Return value of flagged function ignored - print at line 230, column 5. See pages 208,278 of PBP.
+Return value of flagged function ignored - print at line 231, column 5. See pages 208,278 of PBP.
+Return value of flagged function ignored - print at line 232, column 5. See pages 208,278 of PBP.
+Return value of flagged function ignored - print at line 233, column 5. See pages 208,278 of PBP.
+Return value of flagged function ignored - print at line 234, column 5. See pages 208,278 of PBP.

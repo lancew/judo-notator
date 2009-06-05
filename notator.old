@@ -4,6 +4,8 @@ use warnings;
 use English qw( -no_match_vars );
 use version;
 use Term::ReadKey;
+use Switch;
+
 ReadMode 'raw';
 
 local $OUTPUT_AUTOFLUSH = 1;
@@ -81,85 +83,40 @@ while ($run_flag) {
 
         # No key yet
     }
-    if ( $key eq "q" || $key eq "Q" ) {
-        $run_flag = 0;
 
-    }
-    if ( $key eq "f" || $key eq "F" ) {
-        $blue_Attack++;
-        $events++;
-
-    }
-    if ( $key eq "d" || $key eq "D" ) {
-        $blue_EffAttack++;
-        $events++;
-
-    }
-    if ( $key eq "v" || $key eq "V" ) {
-        $blue_Koka++;
-        $events++;
-
-    }
-    if ( $key eq "c" || $key eq "C" ) {
-        $blue_Yuko++;
-        $events++;
-
-    }
-    if ( $key eq "x" || $key eq "X" ) {
-        $blue_Wazari++;
-        $events++;
-
-    }
-    if ( $key eq "z" || $key eq "Z" ) {
-        $blue_Ippon++;
-        $events++;
-
-    }
-    if ( $key eq "t" || $key eq "T" ) {
-        $blue_Penalty++;
-        $events++;
-
-    }
-
-    if ( $key eq "j" || $key eq "J" ) {
-        $white_Attack++;
-        $events++;
-
-    }
-    if ( $key eq "k" || $key eq "K" ) {
-        $white_EffAttack++;
-        $events++;
-
-    }
-    if ( $key eq "n" || $key eq "N" ) {
-        $white_Koka++;
-        $events++;
-
-    }
-    if ( $key eq "m" || $key eq "M" ) {
-        $white_Yuko++;
-        $events++;
-
-    }
-    if ( $key eq "," || $key eq "<" ) {
-        $white_Wazari++;
-        $events++;
-
-    }
-    if ( $key eq "." || $key eq ">" ) {
-        $white_Ippon++;
-        $events++;
-
-    }
-    if ( $key eq "u" || $key eq "U" ) {
-        $white_Penalty++;
-        $events++;
-
-    }
-
-    if ( $key eq " " ) {
-        $segments++;
-        $events++;
+    switch ($key) {
+        case "q" { $run_flag = 0; }
+        case "Q" { $run_flag = 0; }
+        case "f" { $blue_Attack++;     $events++; }
+        case "F" { $blue_Attack--;     $events--; }
+        case "d" { $blue_EffAttack++;  $events++; }
+        case "D" { $blue_EffAttack--;  $events--; }
+        case "v" { $blue_Koka++;       $events++; }
+        case "V" { $blue_Koka--;       $events--; }
+        case "c" { $blue_Yuko++;       $events++; }
+        case "C" { $blue_Yuko--;       $events--; }
+        case "x" { $blue_Wazari++;     $events++; }
+        case "X" { $blue_Wazari--;     $events--; }
+        case "z" { $blue_Ippon++;      $events++; }
+        case "Z" { $blue_Ippon--;      $events--; }
+        case "t" { $blue_Penalty++;    $events++; }
+        case "T" { $blue_Penalty--;    $events--; }
+        case "j" { $white_Attack++;    $events++; }
+        case "J" { $white_Attack--;    $events--; }
+        case "k" { $white_EffAttack++; $events++; }
+        case "K" { $white_EffAttack--; $events--; }
+        case "n" { $white_Koka++;      $events++; }
+        case "N" { $white_Koka--;      $events--; }
+        case "m" { $white_Yuko++;      $events++; }
+        case "M" { $white_Yuko--;      $events--; }
+        case "," { $white_Wazari++;    $events++; }
+        case "<" { $white_Wazari--;    $events--; }
+        case "." { $white_Ippon++;     $events++; }
+        case ">" { $white_Ippon--;     $events--; }
+        case "u" { $white_Penalty++;   $events++; }
+        case "U" { $white_Penalty--;   $events--; }
+        case " " { $segments++;        $events++; }
+        
 
     }
 
@@ -210,6 +167,11 @@ sub DisplayWelcome {
 "|                                    |                                        |\n";
     print
 "|                              Q     = SOREMADE                               |\n";
+    print
+"|                                    |                                        |\n";
+    print
+"|             <SHIFT>  plus any of these keys will delete that score          |\n";
+
     print
 "-------------------------------------------------------------------------------\n";
     print "  Events:  ";

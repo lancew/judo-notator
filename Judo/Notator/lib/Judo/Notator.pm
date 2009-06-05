@@ -59,11 +59,9 @@ Judo::Notator - Module designed for building Judo Notator software.
 
 =head1 DESCRIPTION
 
-Stub documentation for this module was created by ExtUtils::ModuleMaker.
-It looks like the author of the extension was negligent enough
-to leave the stub unedited.
+This module is a holding point for routines used to build a notation system for the sport of Judo.
 
-Blah blah blah.
+More to follow....
 
 
 =head1 USAGE

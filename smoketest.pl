@@ -1,3 +1,6 @@
+#!/usr/bin/perl
+push @INC,"./";
+use strict;
 use Perl::Critic;
 use Perl::Tidy;
 use File::Find::Rule;
@@ -11,7 +14,7 @@ use Test::Harness qw(&runtests);
 
 
 
-    for($count = 1; $count < 6; $count++){
+    for(my $count = 1; $count < 6; $count++){
     	open (MYFILE, ">critic-$count.txt");
         my $critic = Perl::Critic->new(-severity => $count);
     	my @violations = $critic->critique($file);
@@ -20,3 +23,16 @@ use Test::Harness qw(&runtests);
     	close (MYFILE);
     	}
 
+
+my $rule = File::Find::Rule->new;
+$rule->or(
+$rule->new->directory->name('CVS')->prune->discard,
+$rule->new->file->name( '*.t' )
+);
+my @start = @ARGV ? @ARGV : '.';
+my @files;
+for ( @start ) {
+push( @files, (-d) ? $rule->in($_) : $_ );
+}
+
+runtests(@files);
