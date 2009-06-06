@@ -1,8 +1,0 @@
-MANIFEST
-README
-LICENSE
-Todo
-Changes
-Makefile.PL
-lib/Judo/Notator.pm
-t/001_load.t

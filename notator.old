@@ -116,7 +116,6 @@ while ($run_flag) {
         case "u" { $white_Penalty++;   $events++; }
         case "U" { $white_Penalty--;   $events--; }
         case " " { $segments++;        $events++; }
-        
 
     }
 
