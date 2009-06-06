@@ -1,9 +1,10 @@
 Code not contained in explicit package at line 1, column 1. Violates encapsulation.
-Variable declared as "local" at line 11, column 1. See pages 77,78,79 of PBP.
--1 is not one of the allowed literal values (0, 1, 2). Use the Readonly module or the "constant" pragma instead at line 82, column 41. Unnamed numeric literals make code less maintainable.
-Quotes used with a noisy string at line 112, column 14. See page 53 of PBP.
-Quotes used with a noisy string at line 114, column 14. See page 53 of PBP.
-Quotes used with an empty string at line 118, column 14. See page 53 of PBP.
-Postfix control "if" used at line 122, column 5. See pages 93,94 of PBP.
-10 is not one of the allowed literal values (0, 1, 2). Use the Readonly module or the "constant" pragma instead at line 122, column 21. Unnamed numeric literals make code less maintainable.
-1900 is not one of the allowed literal values (0, 1, 2). Use the Readonly module or the "constant" pragma instead at line 213, column 16. Unnamed numeric literals make code less maintainable.
+Variable declared as "local" at line 9, column 1. See pages 77,78,79 of PBP.
+Postfix control "unless" used at line 76, column 9. See pages 96,97 of PBP.
+-1 is not one of the allowed literal values (0, 1, 2). Use the Readonly module or the "constant" pragma instead at line 85, column 45. Unnamed numeric literals make code less maintainable.
+Quotes used with a noisy string at line 115, column 18. See page 53 of PBP.
+Quotes used with a noisy string at line 117, column 18. See page 53 of PBP.
+Quotes used with an empty string at line 121, column 18. See page 53 of PBP.
+Postfix control "if" used at line 125, column 9. See pages 93,94 of PBP.
+10 is not one of the allowed literal values (0, 1, 2). Use the Readonly module or the "constant" pragma instead at line 125, column 25. Unnamed numeric literals make code less maintainable.
+1900 is not one of the allowed literal values (0, 1, 2). Use the Readonly module or the "constant" pragma instead at line 218, column 16. Unnamed numeric literals make code less maintainable.

@@ -6,8 +6,6 @@ use version;
 use Term::ReadKey;
 use Switch;
 
-ReadMode 'raw';
-
 local $OUTPUT_AUTOFLUSH = 1;
 
 # $Id$
@@ -41,6 +39,7 @@ our $VERSION = qv('0.0.1');
 # Sub routine stubs
 # ---------------------------------------------
 
+sub do_main;
 sub DisplayWelcome;
 sub ResetCounters;
 sub PrintResults;
@@ -74,63 +73,69 @@ my $white_Penalty   = 0;
 # MAIN LOOP
 # -----------------------------------------------
 
-DisplayWelcome();
+do_main unless (caller);
 
-my $run_flag = 1;
-while ($run_flag) {
+sub do_main {
+    ReadMode 'raw';
+    DisplayWelcome();
 
-    while ( not defined( $key = ReadKey(-1) ) ) {
+    my $run_flag = 1;
+    while ($run_flag) {
 
-        # No key yet
+        while ( not defined( $key = ReadKey(-1) ) ) {
+
+            # No key yet
+        }
+
+        switch ($key) {
+            case "q" { $run_flag = 0; }
+            case "Q" { $run_flag = 0; }
+            case "f" { $blue_Attack++;     $events++; }
+            case "F" { $blue_Attack--;     $events--; }
+            case "d" { $blue_EffAttack++;  $events++; }
+            case "D" { $blue_EffAttack--;  $events--; }
+            case "v" { $blue_Koka++;       $events++; }
+            case "V" { $blue_Koka--;       $events--; }
+            case "c" { $blue_Yuko++;       $events++; }
+            case "C" { $blue_Yuko--;       $events--; }
+            case "x" { $blue_Wazari++;     $events++; }
+            case "X" { $blue_Wazari--;     $events--; }
+            case "z" { $blue_Ippon++;      $events++; }
+            case "Z" { $blue_Ippon--;      $events--; }
+            case "t" { $blue_Penalty++;    $events++; }
+            case "T" { $blue_Penalty--;    $events--; }
+            case "j" { $white_Attack++;    $events++; }
+            case "J" { $white_Attack--;    $events--; }
+            case "k" { $white_EffAttack++; $events++; }
+            case "K" { $white_EffAttack--; $events--; }
+            case "n" { $white_Koka++;      $events++; }
+            case "N" { $white_Koka--;      $events--; }
+            case "m" { $white_Yuko++;      $events++; }
+            case "M" { $white_Yuko--;      $events--; }
+            case "," { $white_Wazari++;    $events++; }
+            case "<" { $white_Wazari--;    $events--; }
+            case "." { $white_Ippon++;     $events++; }
+            case ">" { $white_Ippon--;     $events--; }
+            case "u" { $white_Penalty++;   $events++; }
+            case "U" { $white_Penalty--;   $events--; }
+            case " " { $segments++;        $events++; }
+
+        }
+
+        if ( $events >= 10 ) {
+            print "\b\b";
+        }
+        else {
+            print "\b";
+        }
+        print "$events";
+
     }
+    ReadMode 'restore';
 
-    switch ($key) {
-        case "q" { $run_flag = 0; }
-        case "Q" { $run_flag = 0; }
-        case "f" { $blue_Attack++;     $events++; }
-        case "F" { $blue_Attack--;     $events--; }
-        case "d" { $blue_EffAttack++;  $events++; }
-        case "D" { $blue_EffAttack--;  $events--; }
-        case "v" { $blue_Koka++;       $events++; }
-        case "V" { $blue_Koka--;       $events--; }
-        case "c" { $blue_Yuko++;       $events++; }
-        case "C" { $blue_Yuko--;       $events--; }
-        case "x" { $blue_Wazari++;     $events++; }
-        case "X" { $blue_Wazari--;     $events--; }
-        case "z" { $blue_Ippon++;      $events++; }
-        case "Z" { $blue_Ippon--;      $events--; }
-        case "t" { $blue_Penalty++;    $events++; }
-        case "T" { $blue_Penalty--;    $events--; }
-        case "j" { $white_Attack++;    $events++; }
-        case "J" { $white_Attack--;    $events--; }
-        case "k" { $white_EffAttack++; $events++; }
-        case "K" { $white_EffAttack--; $events--; }
-        case "n" { $white_Koka++;      $events++; }
-        case "N" { $white_Koka--;      $events--; }
-        case "m" { $white_Yuko++;      $events++; }
-        case "M" { $white_Yuko--;      $events--; }
-        case "," { $white_Wazari++;    $events++; }
-        case "<" { $white_Wazari--;    $events--; }
-        case "." { $white_Ippon++;     $events++; }
-        case ">" { $white_Ippon--;     $events--; }
-        case "u" { $white_Penalty++;   $events++; }
-        case "U" { $white_Penalty--;   $events--; }
-        case " " { $segments++;        $events++; }
-
-    }
-
-    if ( $events >= 10 ) {
-        print "\b\b";
-    }
-    else {
-        print "\b";
-    }
-    print "$events";
-
+    PrintResults();
+    return;
 }
-ReadMode 'restore';
-
-PrintResults();
 
 # -----------------------------------------------
 # Sub Routines
@@ -197,7 +202,7 @@ sub ResetCounters {
     $white_Penalty   = 0;
 
     $events = 0;
-    return;
+    return 1;
 }
 
 sub PrintResults {
@@ -233,6 +238,12 @@ sub PrintResults {
     print "Ippon: $white_Ippon\n";
     print "Penalty: $white_Penalty\n\n\n";
     return;
+}
+
+sub dumb_test {
+    print "yes";
+    return 1;
+
 }
 
 1;
