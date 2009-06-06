@@ -11,8 +11,8 @@ open( my $fh, $filename ) or
 return fail( "Couldn't open $filename: $!" );
 my $text = <$fh>;
 close $fh;
-like( $text, qr/use strict;/,
-"$filename uses strict" );
+like( $text, qr/use warnings;/,
+"$filename uses warnings" );
 } # check()
 
 
