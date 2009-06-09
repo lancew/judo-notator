@@ -9,7 +9,7 @@ use Switch;
 local $OUTPUT_AUTOFLUSH = 1;
 
 # $Id$
-our $VERSION = qv('0.0.1');
+our $VERSION = qv('0.2.1');
 
 # ---------------------------------------------------------
 #
