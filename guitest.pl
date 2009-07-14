@@ -5,13 +5,11 @@
     use Curses::UI;
     my $cui = new Curses::UI( -color_support => 1 );
     
-    my @menu = (
-          { -label => 'File', 
-            -submenu => [
-           { -label => 'Exit      ^Q', -value => \&exit_dialog  }
-                        ]
-           },
-        );
+    my $screen_width = $cui->width();
+    my $colum_width = ($screen_width-12)/3;
+    
+    
+    
         
         
     sub exit_dialog()
@@ -27,7 +25,13 @@
         }
         
         
-        
+    my @menu = (
+          { -label => 'File', 
+            -submenu => [
+           { -label => 'Exit      ^Q', -value => \&exit_dialog  }
+                        ]
+           },
+        );    
         
         
     my $menu = $cui->add(
@@ -35,54 +39,55 @@
                 -menu => \@menu,
                 -fg  => "blue",
         );
-        
-        
-    my $win1 = $cui->add(
-                             'win1', 'Window',
-                             -border => 1,
-                             -y    => 1,
-                             -bfg  => 'red',
-                             
-                             
-                     );
+     
+    
+     
+     my $win1 = $cui->add(
+        'win1', 'Window',
+        -border => 1,
+        -title => 'BLUE',
+        -width => $colum_width,
+        -pad => 2,
+    );     
+    
+    my $win2 = $cui->add(
+        'win2', 'Window',
+        -border => 1,
+        -x => $colum_width,
+        -width => $colum_width,
+        -title => 'JUDO-NOTATOR',
+        -pad => 2,
+    );                      
+     
+    my $win3 = $cui->add(
+        'win3', 'Window',
+        -border => 1,
+        -x => $colum_width*2,
+        -width => $colum_width,
+        -title => 'WHITE',
+        -pad => 2,
+    );                
                      
-     my $textviewer = $win1->add( 
+   
+   my $textviewer = $win1->add( 
         'mytextviewer', 'TextViewer',
     -text => "Hello, world!\n"
                . "Goodbye, world!"
     );
 
-    $textviewer->focus(); 
-               
-    sub update_window()
-        {
-                $textviewer->text('hello mummy'); 
-                
-
-        }
-                 
-                     
                                             
     $cui->set_binding(sub {$menu->focus()}, "\cX");
     $cui->set_binding( \&exit_dialog , "\cQ");  
     $cui->set_binding( \&exit_dialog , "q"); 
     $cui->set_binding( \&exit_dialog , "Q"); 
-    $cui->set_binding( \&update_window , "a"); 
     
-    my $label = $win1->add(
-        'mylabel', 'Label',
-        -text      => 'Hello, world.....!',
-        -bold      => 1,
-    );
-
-    $label->draw;
-    
+    $win2->focus();
+   
+        
     
      
     $cui->mainloop();    
     
     
-    
-    $label->refresh;
-    
+       
     
