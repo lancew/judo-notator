@@ -94,8 +94,11 @@ my $win3 = $cui->add(
 );
 
 my $info_blue = $win1->add( 'blue', 'TextViewer', -text => show_blue(), );
-
 my $info_white = $win3->add( 'white', 'TextViewer', -text => show_white(), );
+
+# -----------------------------------------------
+# Key Bindings
+# -----------------------------------------------
 
 $cui->set_binding( \&exit_dialog, "\cQ" );
 $cui->set_binding( \&exit_dialog, "q" );
@@ -107,6 +110,9 @@ $cui->set_binding( \&remove_one_blue_Attack, "F" );
 $cui->set_binding( \&add_one_blue_EffAttack, "d" );
 $cui->set_binding( \&remove_one_blue_EffAttack, "D" );
 
+
+
+# -----------------------------------------------
 
 $win2->focus();
 
