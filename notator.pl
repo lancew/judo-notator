@@ -245,8 +245,8 @@ sub show_white {
 
 sub add_one_blue_Attack {
     $blue_Attack++;
-
-    $win2->focus();
+	$info_blue->text(show_blue());
+	$win1->focus();
 
 }
 

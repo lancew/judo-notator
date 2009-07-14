@@ -52,7 +52,7 @@ my $textviewer = $win1->add(
     );  
 
  sub go1 {
-      
+  $textviewer->text('hello');    
  }   
  
  
