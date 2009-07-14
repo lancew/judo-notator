@@ -28,6 +28,8 @@
         
         
         
+        
+        
     my $menu = $cui->add(
                 'menu','Menubar', 
                 -menu => \@menu,
@@ -40,29 +42,46 @@
                              -border => 1,
                              -y    => 1,
                              -bfg  => 'red',
+                             
+                             
                      );
                      
+     my $textviewer = $win1->add( 
+        'mytextviewer', 'TextViewer',
+    -text => "Hello, world!\n"
+               . "Goodbye, world!"
+    );
+
+    $textviewer->focus(); 
+               
+    sub update_window()
+        {
+                $textviewer->text('hello mummy'); 
+                
+
+        }
+                 
                      
                                             
     $cui->set_binding(sub {$menu->focus()}, "\cX");
     $cui->set_binding( \&exit_dialog , "\cQ");  
     $cui->set_binding( \&exit_dialog , "q"); 
     $cui->set_binding( \&exit_dialog , "Q"); 
+    $cui->set_binding( \&update_window , "a"); 
     
     my $label = $win1->add(
         'mylabel', 'Label',
-        -text      => 'Hello, world!',
+        -text      => 'Hello, world.....!',
         -bold      => 1,
     );
 
     $label->draw;
     
     
-    
-    
+     
     $cui->mainloop();    
-    slepp(1);
-    $label->text('Lance');
+    
+    
     
     $label->refresh;
     

@@ -14,7 +14,7 @@ our $VERSION = qv('0.1.1');
 # ---------------------------------------------------------
 #
 # This file created by Lance Wicks, 18 April 2009.
-#                    Last Modified, 18 April 2009.
+#                    Last Modified, 13 June 2009.
 #
 #
 #    notator.pl - Notation software for BSc. project.
