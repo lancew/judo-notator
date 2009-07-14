@@ -102,6 +102,11 @@ $cui->set_binding( \&exit_dialog, "q" );
 $cui->set_binding( \&exit_dialog, "Q" );
 
 $cui->set_binding( \&add_one_blue_Attack, "f" );
+$cui->set_binding( \&remove_one_blue_Attack, "F" );
+
+$cui->set_binding( \&add_one_blue_EffAttack, "d" );
+$cui->set_binding( \&remove_one_blue_EffAttack, "D" );
+
 
 $win2->focus();
 
@@ -249,6 +254,28 @@ sub add_one_blue_Attack {
 	$win1->focus();
 
 }
+
+sub remove_one_blue_Attack {
+    $blue_Attack--;
+	$info_blue->text(show_blue());
+	$win1->focus();
+
+}
+
+sub add_one_blue_EffAttack {
+    $blue_EffAttack++;
+	$info_blue->text(show_blue());
+	$win1->focus();
+
+}
+
+sub remove_one_blue_EffAttack {
+    $blue_EffAttack--;
+	$info_blue->text(show_blue());
+	$win1->focus();
+
+}
+
 
 sub exit_dialog() {
     my $return = $cui->dialog(
