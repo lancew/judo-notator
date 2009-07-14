@@ -25,36 +25,21 @@
         }
         
         
-    my @menu = (
-          { -label => 'File', 
-            -submenu => [
-           { -label => 'Exit      ^Q', -value => \&exit_dialog  }
-                        ]
-           },
-        );    
         
-        
-    my $menu = $cui->add(
-                'menu','Menubar', 
-                -menu => \@menu,
-                -fg  => "blue",
-        );
-     
-    
-     
      my $win1 = $cui->add(
         'win1', 'Window',
         -border => 1,
         -title => 'BLUE',
-        -width => $colum_width,
+        -bfg=>"blue",
+        -width => 35,
         -pad => 2,
     );     
     
     my $win2 = $cui->add(
         'win2', 'Window',
         -border => 1,
-        -x => $colum_width,
-        -width => $colum_width,
+        -x => 35,
+        -width => 86,
         -title => 'JUDO-NOTATOR',
         -pad => 2,
     );                      
@@ -62,27 +47,77 @@
     my $win3 = $cui->add(
         'win3', 'Window',
         -border => 1,
-        -x => $colum_width*2,
-        -width => $colum_width,
+        -x => 120,
+        -width => 35,
         -title => 'WHITE',
+        -bfg=>"white",
         -pad => 2,
     );                
                      
    
-   my $textviewer = $win1->add( 
-        'mytextviewer', 'TextViewer',
-    -text => "Hello, world!\n"
-               . "Goodbye, world!"
-    );
+   
 
                                             
-    $cui->set_binding(sub {$menu->focus()}, "\cX");
+    
     $cui->set_binding( \&exit_dialog , "\cQ");  
     $cui->set_binding( \&exit_dialog , "q"); 
     $cui->set_binding( \&exit_dialog , "Q"); 
     
     $win2->focus();
    
+    
+    sub Menu {
+    my $welcome; 
+
+    $welcome .=
+"-------------------------------------------------------------------------------\n";
+    $welcome .=
+"|                     BLUE           |                   WHITE                |\n";
+    $welcome .=
+"|  F = Attack                        |  J = Attack                            |\n";
+    $welcome .=
+"|  D = Effective Attack              |  K = Effective Attack                  |\n";
+    $welcome .=
+"|                                    |                                        |\n";
+    $welcome .=
+"|  V = Koka                          |  N = Koka                              |\n";
+    $welcome .=
+"|  C = Yoka                          |  M = Yoka                              |\n";
+    $welcome .=
+"|  X = Wazari                        |  < = Wazari                            |\n";
+    $welcome .=
+"|  Z = Ippon                         |  > = Ippon                             |\n";
+    $welcome .=
+"|  T = Receive Penalty               |   U = Receive Penalty                  |\n";
+    $welcome .=
+"|                                    |                                        |\n";
+    $welcome .=
+"|                              SPACE = MATTE                                  |\n";
+    $welcome .=
+"|                                    |                                        |\n";
+    $welcome .=
+"|                              Q     = SOREMADE                               |\n";
+    $welcome .=
+"|                                    |                                        |\n";
+    $welcome .=
+"|             <SHIFT>  plus any of these keys will delete that score          |\n";
+
+    $welcome .=
+"-------------------------------------------------------------------------------\n";
+    
+    return($welcome);
+}
+
+  my $textviewer = $win2->add( 
+        'menu', 'TextViewer',
+    -text => Menu(),
+    );  
+    
+    
+    
+    
+    
+    
         
     
      
