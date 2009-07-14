@@ -3,18 +3,18 @@ use warnings;
 
 use English qw( -no_match_vars );
 use version;
-use Term::ReadKey;
-use Switch;
+use Curses::UI;
+my $cui = new Curses::UI( -color_support => 1 );
 
 local $OUTPUT_AUTOFLUSH = 1;
 
 # $Id$
-our $VERSION = qv('0.1.1');
+our $VERSION = qv('0.2.0');
 
 # ---------------------------------------------------------
 #
 # This file created by Lance Wicks, 18 April 2009.
-#                    Last Modified, 13 June 2009.
+#                    Last Modified, 14 July 2009.
 #
 #
 #    notator.pl - Notation software for BSc. project.
@@ -35,23 +35,15 @@ our $VERSION = qv('0.1.1');
 #
 # -----------------------------------------------------------
 
-# ---------------------------------------------
-# Sub routine stubs
-# ---------------------------------------------
-
-sub do_main;
-sub DisplayWelcome;
-sub ResetCounters;
-sub PrintResults;
-
 # -----------------------------------------------
 # Global Variables
 # -----------------------------------------------
-my $key;
 
-my $segments = 1;
+my $run_flag = 1;
 
-my $events = 0;
+my $segments = 0;
+my $active   = 0;
+my $events   = 0;
 
 my $blue_Attack    = 0;
 my $blue_EffAttack = 0;
@@ -73,113 +65,94 @@ my $white_Penalty   = 0;
 # MAIN LOOP
 # -----------------------------------------------
 
-do_main unless (caller);
+my $win1 = $cui->add(
+    'win1', 'Window',
+    -border => 1,
+    -title  => 'BLUE',
+    -bfg    => "blue",
+    -width  => 35,
+    -pad    => 2,
+);
 
-sub do_main {
-    ReadMode 'raw';
-    DisplayWelcome();
+my $win2 = $cui->add(
+    'win2', 'Window',
+    -border => 1,
+    -x      => 35,
+    -width  => 86,
+    -title  => 'JUDO-NOTATOR',
+    -pad    => 2,
+);
 
-    my $run_flag = 1;
-    while ($run_flag) {
+my $win3 = $cui->add(
+    'win3', 'Window',
+    -border => 1,
+    -x      => 120,
+    -width  => 35,
+    -title  => 'WHITE',
+    -bfg    => "white",
+    -pad    => 2,
+);
 
-        while ( not defined( $key = ReadKey(-1) ) ) {
+my $info_blue = $win1->add( 'blue', 'TextViewer', -text => show_blue(), );
 
-            # No key yet
-        }
+my $info_white = $win3->add( 'white', 'TextViewer', -text => show_white(), );
 
-        switch ($key) {
-            case "q" { $run_flag = 0; }
-            case "Q" { $run_flag = 0; }
-            case "f" { $blue_Attack++;     $events++; }
-            case "F" { $blue_Attack--;     $events--; }
-            case "d" { $blue_EffAttack++;  $events++; }
-            case "D" { $blue_EffAttack--;  $events--; }
-            case "v" { $blue_Koka++;       $events++; }
-            case "V" { $blue_Koka--;       $events--; }
-            case "c" { $blue_Yuko++;       $events++; }
-            case "C" { $blue_Yuko--;       $events--; }
-            case "x" { $blue_Wazari++;     $events++; }
-            case "X" { $blue_Wazari--;     $events--; }
-            case "z" { $blue_Ippon++;      $events++; }
-            case "Z" { $blue_Ippon--;      $events--; }
-            case "t" { $blue_Penalty++;    $events++; }
-            case "T" { $blue_Penalty--;    $events--; }
-            case "j" { $white_Attack++;    $events++; }
-            case "J" { $white_Attack--;    $events--; }
-            case "k" { $white_EffAttack++; $events++; }
-            case "K" { $white_EffAttack--; $events--; }
-            case "n" { $white_Koka++;      $events++; }
-            case "N" { $white_Koka--;      $events--; }
-            case "m" { $white_Yuko++;      $events++; }
-            case "M" { $white_Yuko--;      $events--; }
-            case "," { $white_Wazari++;    $events++; }
-            case "<" { $white_Wazari--;    $events--; }
-            case "." { $white_Ippon++;     $events++; }
-            case ">" { $white_Ippon--;     $events--; }
-            case "u" { $white_Penalty++;   $events++; }
-            case "U" { $white_Penalty--;   $events--; }
-            case " " { $segments++;        $events++; }
+$cui->set_binding( \&exit_dialog, "\cQ" );
+$cui->set_binding( \&exit_dialog, "q" );
+$cui->set_binding( \&exit_dialog, "Q" );
 
-        }
+$cui->set_binding( \&add_one_blue_Attack, "f" );
 
-        if ( $events >= 10 ) {
-            print "\b\b";
-        }
-        else {
-            print "\b";
-        }
-        print "$events";
+$win2->focus();
 
-    }
-    ReadMode 'restore';
+my $textviewer = $win2->add( 'menu', 'TextViewer', -text => printMenu(), );
 
-    PrintResults();
-    return;
-}
+$cui->mainloop();
 
 # -----------------------------------------------
 # Sub Routines
 # -----------------------------------------------
 
-sub DisplayWelcome {
-    print "\n\nJudo Notator ($VERSION)\n\n";
-    print
+sub printMenu {
+    my $welcome;
+
+    $welcome .=
 "-------------------------------------------------------------------------------\n";
-    print
+    $welcome .=
 "|                     BLUE           |                   WHITE                |\n";
-    print
+    $welcome .=
 "|  F = Attack                        |  J = Attack                            |\n";
-    print
-"|  D = Effective Attack              |  J = Effective Attack                  |\n";
-    print
+    $welcome .=
+"|  D = Effective Attack              |  K = Effective Attack                  |\n";
+    $welcome .=
 "|                                    |                                        |\n";
-    print
+    $welcome .=
 "|  V = Koka                          |  N = Koka                              |\n";
-    print
+    $welcome .=
 "|  C = Yoka                          |  M = Yoka                              |\n";
-    print
+    $welcome .=
 "|  X = Wazari                        |  < = Wazari                            |\n";
-    print
+    $welcome .=
 "|  Z = Ippon                         |  > = Ippon                             |\n";
-    print
+    $welcome .=
 "|  T = Receive Penalty               |   U = Receive Penalty                  |\n";
-    print
+    $welcome .=
 "|                                    |                                        |\n";
-    print
+    $welcome .=
 "|                              SPACE = MATTE                                  |\n";
-    print
+    $welcome .=
 "|                                    |                                        |\n";
-    print
+    $welcome .=
 "|                              Q     = SOREMADE                               |\n";
-    print
+    $welcome .=
 "|                                    |                                        |\n";
-    print
+    $welcome .=
 "|             <SHIFT>  plus any of these keys will delete that score          |\n";
 
-    print
+    $welcome .=
 "-------------------------------------------------------------------------------\n";
-    print "  Events:  ";
-    return;
+
+    return ($welcome);
 }
 
 sub ResetCounters {
@@ -244,6 +217,48 @@ sub dumb_test {
     print "yes";
     return 1;
 
+}
+
+sub show_blue {
+    my $temp = " \n";
+    $temp .= "Ineffective Attacks: $blue_Attack\n";
+    $temp .= "Effective Attacks: $blue_EffAttack\n";
+    $temp .= "Koka: $blue_Koka\n";
+    $temp .= "Yuka: $blue_Yuko\n";
+    $temp .= "Wazari: $blue_Wazari\n";
+    $temp .= "Ippon: $blue_Ippon\n";
+    $temp .= "Penalty: $blue_Penalty\n";
+
+}
+
+sub show_white {
+    my $temp = " \n";
+    $temp .= "Ineffective Attacks: $white_Attack\n";
+    $temp .= "Effective Attacks: $white_EffAttack\n";
+    $temp .= "Koka: $white_Koka\n";
+    $temp .= "Yuka: $white_Yuko\n";
+    $temp .= "Wazari: $white_Wazari\n";
+    $temp .= "Ippon: $white_Ippon\n";
+    $temp .= "Penalty: $white_Penalty\n\n\n";
+
+}
+
+sub add_one_blue_Attack {
+    $blue_Attack++;
+
+    $win2->focus();
+
+}
+
+sub exit_dialog() {
+    my $return = $cui->dialog(
+        -message => "Do you really want to quit?",
+        -title   => "Are you sure???",
+        -buttons => [ 'yes', 'no' ],
+
+    );
+
+    exit(0) if $return;
 }
 
 1;
