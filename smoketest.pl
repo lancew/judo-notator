@@ -1,4 +1,6 @@
 #!/usr/bin/perl
+system('clear');
+print("Running Smoketests...\n");
 push @INC, "./";
 use strict;
 use warnings;

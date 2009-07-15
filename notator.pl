@@ -1,12 +1,15 @@
+package Local::notator;
+
 use strict;
 use warnings;
 
 use English qw( -no_match_vars );
 use version;
 use Curses::UI;
-my $cui = new Curses::UI( -color_support => 1 );
 
-local $OUTPUT_AUTOFLUSH = 1;
+# __PACKAGE__->main() unless caller; # executes at run-time, unless used as module
+
+$OUTPUT_AUTOFLUSH = 1;
 
 # $Id$
 our $VERSION = qv('0.2.0');
@@ -14,7 +17,7 @@ our $VERSION = qv('0.2.0');
 # ---------------------------------------------------------
 #
 # This file created by Lance Wicks, 18 April 2009.
-#                    Last Modified, 14 July 2009.
+#                    Last Modified, 15 July 2009.
 #
 #
 #    notator.pl - Notation software for BSc. project.
@@ -61,64 +64,79 @@ my $white_Wazari    = 0;
 my $white_Ippon     = 0;
 my $white_Penalty   = 0;
 
+my $cui;
+my $win1;
+my $win2;
+my $win3;
+my $info_blue;
+my $info_white;
+my $textviewer;
+
 # -----------------------------------------------
 # MAIN LOOP
 # -----------------------------------------------
+__PACKAGE__->run() unless caller();
 
-my $win1 = $cui->add(
-    'win1', 'Window',
-    -border => 1,
-    -title  => 'BLUE',
-    -bfg    => "blue",
-    -width  => 35,
-    -pad    => 2,
-);
+sub run {
 
-my $win2 = $cui->add(
-    'win2', 'Window',
-    -border => 1,
-    -x      => 35,
-    -width  => 86,
-    -title  => 'JUDO-NOTATOR',
-    -pad    => 2,
-);
+    $cui = new Curses::UI( -color_support => 1 );
+    $win1 = $cui->add(
+        'win1', 'Window',
+        -border => 1,
+        -title  => 'BLUE',
+        -bfg    => "blue",
+        -width  => 35,
+        -pad    => 2,
+    );
 
-my $win3 = $cui->add(
-    'win3', 'Window',
-    -border => 1,
-    -x      => 120,
-    -width  => 35,
-    -title  => 'WHITE',
-    -bfg    => "white",
-    -pad    => 2,
-);
+    $win2 = $cui->add(
+        'win2', 'Window',
+        -border => 1,
+        -x      => 35,
+        -width  => 86,
+        -title  => 'JUDO-NOTATOR',
+        -pad    => 2,
+    );
 
-my $info_blue = $win1->add( 'blue', 'TextViewer', -text => show_blue(), );
-my $info_white = $win3->add( 'white', 'TextViewer', -text => show_white(), );
+    $win3 = $cui->add(
+        'win3', 'Window',
+        -border => 1,
+        -x      => 120,
+        -width  => 35,
+        -title  => 'WHITE',
+        -bfg    => "white",
+        -pad    => 2,
+    );
 
-# -----------------------------------------------
-# Key Bindings
-# -----------------------------------------------
+    $info_blue  = $win1->add( 'blue',  'TextViewer', -text => show_blue(), );
+    $info_white = $win3->add( 'white', 'TextViewer', -text => show_white(), );
 
-$cui->set_binding( \&exit_dialog, "\cQ" );
-$cui->set_binding( \&exit_dialog, "q" );
-$cui->set_binding( \&exit_dialog, "Q" );
+    # -----------------------------------------------
+    # Key Bindings
+    # -----------------------------------------------
 
-$cui->set_binding( \&add_one_blue_Attack, "f" );
-$cui->set_binding( \&remove_one_blue_Attack, "F" );
+    $cui->set_binding( \&exit_dialog, "\cQ" );
+    $cui->set_binding( \&exit_dialog, "q" );
+    $cui->set_binding( \&exit_dialog, "Q" );
 
-$cui->set_binding( \&add_one_blue_EffAttack, "d" );
-$cui->set_binding( \&remove_one_blue_EffAttack, "D" );
+    $cui->set_binding( \&add_one_blue_Attack,    "f" );
+    $cui->set_binding( \&remove_one_blue_Attack, "F" );
 
+    $cui->set_binding( \&add_one_blue_EffAttack,    "d" );
+    $cui->set_binding( \&remove_one_blue_EffAttack, "D" );
 
+    $cui->set_binding( \&add_one_blue_Koka,    "v" );
+    $cui->set_binding( \&remove_one_blue_Koka, "V" );
 
-# -----------------------------------------------
+    # -----------------------------------------------
 
-$win2->focus();
+    $win2->focus();
 
-my $textviewer = $win2->add( 'menu', 'TextViewer', -text => printMenu(), );
+    $textviewer = $win2->add( 'menu', 'TextViewer', -text => printMenu(), );
 
-$cui->mainloop();
+    $cui->mainloop();
+    return;
+}
 
 # -----------------------------------------------
 # Sub Routines
@@ -186,7 +204,7 @@ sub ResetCounters {
     $white_Penalty   = 0;
 
     $events = 0;
-    return 1;
+    return $segments;
 }
 
 sub PrintResults {
@@ -239,6 +257,7 @@ sub show_blue {
     $temp .= "Wazari: $blue_Wazari\n";
     $temp .= "Ippon: $blue_Ippon\n";
     $temp .= "Penalty: $blue_Penalty\n";
+    return $temp;
 
 }
 
@@ -251,39 +270,59 @@ sub show_white {
     $temp .= "Wazari: $white_Wazari\n";
     $temp .= "Ippon: $white_Ippon\n";
     $temp .= "Penalty: $white_Penalty\n\n\n";
+    return $temp;
 
 }
 
 sub add_one_blue_Attack {
     $blue_Attack++;
-	$info_blue->text(show_blue());
-	$win1->focus();
+    $info_blue->text( show_blue() );
+    $win1->focus();
+    return ($blue_Attack);
 
 }
 
 sub remove_one_blue_Attack {
     $blue_Attack--;
-	$info_blue->text(show_blue());
-	$win1->focus();
+    $info_blue->text( show_blue() );
+    $win1->focus();
+    return ($blue_Attack);
 
 }
 
 sub add_one_blue_EffAttack {
     $blue_EffAttack++;
-	$info_blue->text(show_blue());
-	$win1->focus();
+    $info_blue->text( show_blue() );
+    $win1->focus();
+    return ($blue_EffAttack);
 
 }
 
 sub remove_one_blue_EffAttack {
     $blue_EffAttack--;
-	$info_blue->text(show_blue());
-	$win1->focus();
+    $info_blue->text( show_blue() );
+    $win1->focus();
+    return ($blue_EffAttack);
 
 }
 
+sub add_one_blue_Koka {
+    $blue_Koka++;
+    $info_blue->text( show_blue() );
+    $win1->focus();
+    return ($blue_Koka);
 
-sub exit_dialog() {
+}
+
+sub remove_one_blue_Koka {
+    $blue_Koka--;
+    $info_blue->text( show_blue() );
+    $win1->focus();
+    return ($blue_Koka);
+
+}
+
+sub exit_dialog {
     my $return = $cui->dialog(
         -message => "Do you really want to quit?",
         -title   => "Are you sure???",
@@ -292,6 +331,7 @@ sub exit_dialog() {
     );
 
     exit(0) if $return;
+    return;
 }
 
 1;

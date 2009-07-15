@@ -9,6 +9,10 @@ use Test::Output;
 require 'notator.pl';
 
 
-stdout_is(\&dumb_test,"yes",'Dumb test');
-like( printMenu(), qr/SPACE = MATTE/, 'Menu routine' );
-unlike( printMenu(), qr/chicken/, 'QUick check to test printMenu is not working' );
+
+like( Local::notator::printMenu(), qr/SPACE = MATTE/, 'Menu routine is OK' );
+is( Local::notator::ResetCounters(), 1, 'ResetCounters is OK');
+#like( Local::notator::PrintResults(), qr/Segments/, 'PrintResults is OK' );
+like( Local::notator::show_blue(), qr/Penalty: 0/, 'show_Blue is OK' );
+like( Local::notator::show_white(), qr/Penalty: 0/, 'show_White is OK' );
+#is( Local::notator::add_one_blue_Attack(), 1, 'add_one_blue_Attack is OK');

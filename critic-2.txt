@@ -1,8 +1,2 @@
-Code not contained in explicit package at line 1, column 1. Violates encapsulation.
-Variable declared as "local" at line 9, column 1. See pages 77,78,79 of PBP.
-1900 is not one of the allowed literal values (0, 1, 2). Use the Readonly module or the "constant" pragma instead at line 191, column 16. Unnamed numeric literals make code less maintainable.
-Subroutine "show_blue" does not end with "return" at line 222, column 1. See page 197 of PBP.
-Subroutine "show_white" does not end with "return" at line 234, column 1. See page 197 of PBP.
-Subroutine "add_one_blue_Attack" does not end with "return" at line 246, column 1. See page 197 of PBP.
-Subroutine prototypes used at line 253, column 1. See page 194 of PBP.
-Subroutine "exit_dialog" does not end with "return" at line 253, column 1. See page 197 of PBP.
+Postfix control "unless" used at line 78, column 20. See pages 96,97 of PBP.
+1900 is not one of the allowed literal values (0, 1, 2). Use the Readonly module or the "constant" pragma instead at line 220, column 16. Unnamed numeric literals make code less maintainable.
