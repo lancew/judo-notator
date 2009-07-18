@@ -1,44 +1,46 @@
 Package "Local::notator" does not start with a upper case letter at line 1, column 1. See pages 45,46 of PBP.
-File lexical variable "$blue_Attack" is not all lower case or all upper case at line 51, column 1. See pages 45,46 of PBP.
-File lexical variable "$blue_EffAttack" is not all lower case or all upper case at line 52, column 1. See pages 45,46 of PBP.
-File lexical variable "$blue_Koka" is not all lower case or all upper case at line 53, column 1. See pages 45,46 of PBP.
-File lexical variable "$blue_Yuko" is not all lower case or all upper case at line 54, column 1. See pages 45,46 of PBP.
-File lexical variable "$blue_Wazari" is not all lower case or all upper case at line 55, column 1. See pages 45,46 of PBP.
-File lexical variable "$blue_Ippon" is not all lower case or all upper case at line 56, column 1. See pages 45,46 of PBP.
-File lexical variable "$blue_Penalty" is not all lower case or all upper case at line 57, column 1. See pages 45,46 of PBP.
-File lexical variable "$white_Attack" is not all lower case or all upper case at line 59, column 1. See pages 45,46 of PBP.
-File lexical variable "$white_EffAttack" is not all lower case or all upper case at line 60, column 1. See pages 45,46 of PBP.
-File lexical variable "$white_Koka" is not all lower case or all upper case at line 61, column 1. See pages 45,46 of PBP.
-File lexical variable "$white_Yuko" is not all lower case or all upper case at line 62, column 1. See pages 45,46 of PBP.
-File lexical variable "$white_Wazari" is not all lower case or all upper case at line 63, column 1. See pages 45,46 of PBP.
-File lexical variable "$white_Ippon" is not all lower case or all upper case at line 64, column 1. See pages 45,46 of PBP.
-File lexical variable "$white_Penalty" is not all lower case or all upper case at line 65, column 1. See pages 45,46 of PBP.
-Postfix control "unless" used at line 78, column 20. See pages 96,97 of PBP.
-Builtin function called with parentheses at line 78, column 27. See page 13 of PBP.
-Useless interpolation of literal string at line 87, column 20. See page 51 of PBP.
-Useless interpolation of literal string at line 107, column 20. See page 51 of PBP.
-Useless interpolation of literal string at line 119, column 39. See page 51 of PBP.
-Useless interpolation of literal string at line 120, column 39. See page 51 of PBP.
-Useless interpolation of literal string at line 122, column 50. See page 51 of PBP.
-Useless interpolation of literal string at line 123, column 50. See page 51 of PBP.
-Useless interpolation of literal string at line 125, column 53. See page 51 of PBP.
-Useless interpolation of literal string at line 126, column 53. See page 51 of PBP.
-Useless interpolation of literal string at line 128, column 48. See page 51 of PBP.
-Useless interpolation of literal string at line 129, column 48. See page 51 of PBP.
-Subroutine "printMenu" is not all lower case or all upper case at line 145, column 1. See pages 45,46 of PBP.
-Subroutine "ResetCounters" is not all lower case or all upper case at line 187, column 1. See pages 45,46 of PBP.
-Subroutine "PrintResults" is not all lower case or all upper case at line 210, column 1. See pages 45,46 of PBP.
-Return value of flagged function ignored - print at line 211, column 5. See pages 208,278 of PBP.
-Local lexical variable "@weekDays" is not all lower case or all upper case at line 214, column 5. See pages 45,46 of PBP.
-Local lexical variable "$dayOfMonth" is not all lower case or all upper case at line 215, column 5. See pages 45,46 of PBP.
-Local lexical variable "$yearOffset" is not all lower case or all upper case at line 215, column 5. See pages 45,46 of PBP.
-Local lexical variable "$dayOfWeek" is not all lower case or all upper case at line 215, column 5. See pages 45,46 of PBP.
-Local lexical variable "$dayOfYear" is not all lower case or all upper case at line 215, column 5. See pages 45,46 of PBP.
-Local lexical variable "$daylightSavings" is not all lower case or all upper case at line 215, column 5. See pages 45,46 of PBP.
-Builtin function called with parentheses at line 219, column 9. See page 13 of PBP.
-1900 is not one of the allowed literal values (0, 1, 2). Use the Readonly module or the "constant" pragma instead at line 220, column 16. Unnamed numeric literals make code less maintainable.
-Local lexical variable "$theTime" is not all lower case or all upper case at line 221, column 5. See pages 45,46 of PBP.
+File lexical variable "$blue_Attack" is not all lower case or all upper case at line 49, column 1. See pages 45,46 of PBP.
+File lexical variable "$blue_EffAttack" is not all lower case or all upper case at line 50, column 1. See pages 45,46 of PBP.
+File lexical variable "$blue_Koka" is not all lower case or all upper case at line 51, column 1. See pages 45,46 of PBP.
+File lexical variable "$blue_Yuko" is not all lower case or all upper case at line 52, column 1. See pages 45,46 of PBP.
+File lexical variable "$blue_Wazari" is not all lower case or all upper case at line 53, column 1. See pages 45,46 of PBP.
+File lexical variable "$blue_Ippon" is not all lower case or all upper case at line 54, column 1. See pages 45,46 of PBP.
+File lexical variable "$blue_Penalty" is not all lower case or all upper case at line 55, column 1. See pages 45,46 of PBP.
+File lexical variable "$white_Attack" is not all lower case or all upper case at line 57, column 1. See pages 45,46 of PBP.
+File lexical variable "$white_EffAttack" is not all lower case or all upper case at line 58, column 1. See pages 45,46 of PBP.
+File lexical variable "$white_Koka" is not all lower case or all upper case at line 59, column 1. See pages 45,46 of PBP.
+File lexical variable "$white_Yuko" is not all lower case or all upper case at line 60, column 1. See pages 45,46 of PBP.
+File lexical variable "$white_Wazari" is not all lower case or all upper case at line 61, column 1. See pages 45,46 of PBP.
+File lexical variable "$white_Ippon" is not all lower case or all upper case at line 62, column 1. See pages 45,46 of PBP.
+File lexical variable "$white_Penalty" is not all lower case or all upper case at line 63, column 1. See pages 45,46 of PBP.
+Postfix control "unless" used at line 76, column 20. See pages 96,97 of PBP.
+Builtin function called with parentheses at line 76, column 27. See page 13 of PBP.
+Useless interpolation of literal string at line 85, column 20. See page 51 of PBP.
+Useless interpolation of literal string at line 105, column 20. See page 51 of PBP.
+Useless interpolation of literal string at line 117, column 39. See page 51 of PBP.
+Useless interpolation of literal string at line 118, column 39. See page 51 of PBP.
+Useless interpolation of literal string at line 120, column 50. See page 51 of PBP.
+Useless interpolation of literal string at line 121, column 50. See page 51 of PBP.
+Useless interpolation of literal string at line 123, column 53. See page 51 of PBP.
+Useless interpolation of literal string at line 124, column 53. See page 51 of PBP.
+Useless interpolation of literal string at line 126, column 48. See page 51 of PBP.
+Useless interpolation of literal string at line 127, column 48. See page 51 of PBP.
+Subroutine "printMenu" is not all lower case or all upper case at line 143, column 1. See pages 45,46 of PBP.
+Subroutine "ResetCounters" is not all lower case or all upper case at line 185, column 1. See pages 45,46 of PBP.
+Subroutine "PrintResults" is not all lower case or all upper case at line 208, column 1. See pages 45,46 of PBP.
+Return value of flagged function ignored - print at line 209, column 5. See pages 208,278 of PBP.
+Local lexical variable "@weekDays" is not all lower case or all upper case at line 212, column 5. See pages 45,46 of PBP.
+Local lexical variable "$dayOfMonth" is not all lower case or all upper case at line 213, column 5. See pages 45,46 of PBP.
+Local lexical variable "$yearOffset" is not all lower case or all upper case at line 213, column 5. See pages 45,46 of PBP.
+Local lexical variable "$dayOfWeek" is not all lower case or all upper case at line 213, column 5. See pages 45,46 of PBP.
+Local lexical variable "$dayOfYear" is not all lower case or all upper case at line 213, column 5. See pages 45,46 of PBP.
+Local lexical variable "$daylightSavings" is not all lower case or all upper case at line 213, column 5. See pages 45,46 of PBP.
+Builtin function called with parentheses at line 217, column 9. See page 13 of PBP.
+1900 is not one of the allowed literal values (0, 1, 2). Use the Readonly module or the "constant" pragma instead at line 218, column 16. Unnamed numeric literals make code less maintainable.
+Local lexical variable "$theTime" is not all lower case or all upper case at line 219, column 5. See pages 45,46 of PBP.
+Return value of flagged function ignored - print at line 221, column 5. See pages 208,278 of PBP.
 Return value of flagged function ignored - print at line 223, column 5. See pages 208,278 of PBP.
+Return value of flagged function ignored - print at line 224, column 5. See pages 208,278 of PBP.
 Return value of flagged function ignored - print at line 225, column 5. See pages 208,278 of PBP.
 Return value of flagged function ignored - print at line 226, column 5. See pages 208,278 of PBP.
 Return value of flagged function ignored - print at line 227, column 5. See pages 208,278 of PBP.
@@ -54,16 +56,14 @@ Return value of flagged function ignored - print at line 236, column 5. See page
 Return value of flagged function ignored - print at line 237, column 5. See pages 208,278 of PBP.
 Return value of flagged function ignored - print at line 238, column 5. See pages 208,278 of PBP.
 Return value of flagged function ignored - print at line 239, column 5. See pages 208,278 of PBP.
-Return value of flagged function ignored - print at line 240, column 5. See pages 208,278 of PBP.
-Return value of flagged function ignored - print at line 241, column 5. See pages 208,278 of PBP.
-Return value of flagged function ignored - print at line 246, column 5. See pages 208,278 of PBP.
-Useless interpolation of literal string at line 246, column 11. See page 51 of PBP.
-Subroutine "add_one_blue_Attack" is not all lower case or all upper case at line 277, column 1. See pages 45,46 of PBP.
-Subroutine "remove_one_blue_Attack" is not all lower case or all upper case at line 285, column 1. See pages 45,46 of PBP.
-Subroutine "add_one_blue_EffAttack" is not all lower case or all upper case at line 293, column 1. See pages 45,46 of PBP.
-Subroutine "remove_one_blue_EffAttack" is not all lower case or all upper case at line 301, column 1. See pages 45,46 of PBP.
-Subroutine "add_one_blue_Koka" is not all lower case or all upper case at line 309, column 1. See pages 45,46 of PBP.
-Subroutine "remove_one_blue_Koka" is not all lower case or all upper case at line 317, column 1. See pages 45,46 of PBP.
-Useless interpolation of literal string at line 327, column 21. See page 51 of PBP.
-Useless interpolation of literal string at line 328, column 21. See page 51 of PBP.
-Builtin function called with parentheses at line 333, column 5. See page 13 of PBP.
+Return value of flagged function ignored - print at line 244, column 5. See pages 208,278 of PBP.
+Useless interpolation of literal string at line 244, column 11. See page 51 of PBP.
+Subroutine "add_one_blue_Attack" is not all lower case or all upper case at line 275, column 1. See pages 45,46 of PBP.
+Subroutine "remove_one_blue_Attack" is not all lower case or all upper case at line 283, column 1. See pages 45,46 of PBP.
+Subroutine "add_one_blue_EffAttack" is not all lower case or all upper case at line 291, column 1. See pages 45,46 of PBP.
+Subroutine "remove_one_blue_EffAttack" is not all lower case or all upper case at line 299, column 1. See pages 45,46 of PBP.
+Subroutine "add_one_blue_Koka" is not all lower case or all upper case at line 307, column 1. See pages 45,46 of PBP.
+Subroutine "remove_one_blue_Koka" is not all lower case or all upper case at line 315, column 1. See pages 45,46 of PBP.
+Useless interpolation of literal string at line 325, column 21. See page 51 of PBP.
+Useless interpolation of literal string at line 326, column 21. See page 51 of PBP.
+Builtin function called with parentheses at line 331, column 5. See page 13 of PBP.

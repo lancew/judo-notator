@@ -1,2 +1,2 @@
-Postfix control "unless" used at line 78, column 20. See pages 96,97 of PBP.
-1900 is not one of the allowed literal values (0, 1, 2). Use the Readonly module or the "constant" pragma instead at line 220, column 16. Unnamed numeric literals make code less maintainable.
+Postfix control "unless" used at line 76, column 20. See pages 96,97 of PBP.
+1900 is not one of the allowed literal values (0, 1, 2). Use the Readonly module or the "constant" pragma instead at line 218, column 16. Unnamed numeric literals make code less maintainable.
