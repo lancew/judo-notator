@@ -166,7 +166,7 @@ sub run {
     $cui->set_binding( \&add_one_white_penalty,    'u' );
     $cui->set_binding( \&remove_one_white_penalty, 'U' );
 
-    $cui->set_binding( \&add_one_matte, '1' );
+    $cui->set_binding( \&add_one_matte, "343" );
 
     # -----------------------------------------------
 
@@ -208,7 +208,7 @@ sub print_menu {
     $welcome .=
 "|                                    |                                        |\n";
     $welcome .=
-"|                              SPACE = MATTE                                  |\n";
+"|                              ENTER = MATTE                                  |\n";
     $welcome .=
 "|                                    |                                        |\n";
     $welcome .=
