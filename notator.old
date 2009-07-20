@@ -135,6 +135,15 @@ sub run {
     $cui->set_binding( \&add_one_blue_yuko,    'c' );
     $cui->set_binding( \&remove_one_blue_yuko, 'C' );
 
+    $cui->set_binding( \&add_one_blue_wazari,    'x' );
+    $cui->set_binding( \&remove_one_blue_wazari, 'X' );
+
+    $cui->set_binding( \&add_one_blue_ippon,    'z' );
+    $cui->set_binding( \&remove_one_blue_ippon, 'Z' );
+    
+    $cui->set_binding( \&add_one_blue_penalty,    't' );
+    $cui->set_binding( \&remove_one_blue_penalty, 'T' );
+
     # -----------------------------------------------
 
     $win2->focus();
@@ -345,6 +354,59 @@ sub remove_one_blue_yuko {
     return ($blue_yuko);
 
 }
+
+sub add_one_blue_wazari {
+    $blue_wazari++;
+    $info_blue->text( show_blue() );
+    $win1->focus();
+    return ($blue_wazari);
+
+}
+
+sub remove_one_blue_wazari {
+    $blue_wazari--;
+    $info_blue->text( show_blue() );
+    $win1->focus();
+    return ($blue_wazari);
+
+}
+
+sub add_one_blue_ippon {
+    $blue_ippon++;
+    $info_blue->text( show_blue() );
+    $win1->focus();
+    return ($blue_ippon);
+
+}
+
+sub remove_one_blue_ippon {
+    $blue_ippon--;
+    $info_blue->text( show_blue() );
+    $win1->focus();
+    return ($blue_ippon);
+
+}
+
+
+sub add_one_blue_penalty {
+    $blue_penalty++;
+    $info_blue->text( show_blue() );
+    $win1->focus();
+    return ($blue_penalty);
+
+}
+
+sub remove_one_blue_penalty {
+    $blue_penalty--;
+    $info_blue->text( show_blue() );
+    $win1->focus();
+    return ($blue_penalty);
+
+}
+
+
+
+
 
 sub exit_dialog {
     my $return = $cui->dialog(
