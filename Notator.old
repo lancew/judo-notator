@@ -43,7 +43,7 @@ our $VERSION = qv('0.2.0');
 
 my $run_flag = 1;
 
-my $segments = 1;
+my $segments = 0;
 my $active   = 0;
 my $events   = 0;
 
@@ -165,9 +165,8 @@ sub run {
 
     $cui->set_binding( \&add_one_white_penalty,    'u' );
     $cui->set_binding( \&remove_one_white_penalty, 'U' );
-    
-    $cui->set_binding( \&add_one_matte,    q{ } );
-    
+
+    $cui->set_binding( \&add_one_matte, '343' );
 
     # -----------------------------------------------
 
@@ -209,7 +208,7 @@ sub print_menu {
     $welcome .=
 "|                                    |                                        |\n";
     $welcome .=
-"|                              SPACE = MATTE                                  |\n";
+"|                              ENTER = MATTE                                  |\n";
     $welcome .=
 "|                                    |                                        |\n";
     $welcome .=
@@ -221,6 +220,7 @@ sub print_menu {
 
     $welcome .=
 "-------------------------------------------------------------------------------\n";
+    $welcome .= "Segments: $segments \n";
 
     return ($welcome);
 }
@@ -545,8 +545,10 @@ sub remove_one_white_penalty {
 # ------------------
 
 sub add_one_matte {
-$segments++;
-
+    $segments++;
+    $textviewer->text( print_menu() );
+    $win3->focus();
+    return ($segments);
 }
 
 sub exit_dialog {
