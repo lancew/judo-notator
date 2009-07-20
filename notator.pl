@@ -15,7 +15,7 @@ our $VERSION = qv('0.2.0');
 # ---------------------------------------------------------
 #
 # This file created by Lance Wicks, 18 April 2009.
-#                    Last Modified, 15 July 2009.
+#                    Last Modified, 20 July 2009.
 #
 #
 #    notator.pl - Notation software for BSc. project.
@@ -46,21 +46,21 @@ my $segments = 0;
 my $active   = 0;
 my $events   = 0;
 
-my $blue_Attack    = 0;
-my $blue_EffAttack = 0;
-my $blue_Koka      = 0;
-my $blue_Yuko      = 0;
-my $blue_Wazari    = 0;
-my $blue_Ippon     = 0;
-my $blue_Penalty   = 0;
+my $blue_attack    = 0;
+my $blue_effattack = 0;
+my $blue_koka      = 0;
+my $blue_yuko      = 0;
+my $blue_wazari    = 0;
+my $blue_ippon     = 0;
+my $blue_penalty   = 0;
 
-my $white_Attack    = 0;
-my $white_EffAttack = 0;
-my $white_Koka      = 0;
-my $white_Yuko      = 0;
-my $white_Wazari    = 0;
-my $white_Ippon     = 0;
-my $white_Penalty   = 0;
+my $white_attack    = 0;
+my $white_effattack = 0;
+my $white_koka      = 0;
+my $white_yuko      = 0;
+my $white_wazari    = 0;
+my $white_ippon     = 0;
+my $white_penalty   = 0;
 
 my $cui;
 my $win1;
@@ -117,23 +117,23 @@ sub run {
     $cui->set_binding( \&exit_dialog, "q" );
     $cui->set_binding( \&exit_dialog, "Q" );
 
-    $cui->set_binding( \&add_one_blue_Attack,    "f" );
-    $cui->set_binding( \&remove_one_blue_Attack, "F" );
+    $cui->set_binding( \&add_one_blue_attack,    "f" );
+    $cui->set_binding( \&remove_one_blue_attack, "F" );
 
-    $cui->set_binding( \&add_one_blue_EffAttack,    "d" );
-    $cui->set_binding( \&remove_one_blue_EffAttack, "D" );
+    $cui->set_binding( \&add_one_blue_effattack,    "d" );
+    $cui->set_binding( \&remove_one_blue_effattack, "D" );
 
-    $cui->set_binding( \&add_one_blue_Koka,    "v" );
-    $cui->set_binding( \&remove_one_blue_Koka, "V" );
+    $cui->set_binding( \&add_one_blue_koka,    "v" );
+    $cui->set_binding( \&remove_one_blue_koka, "V" );
 
-    $cui->set_binding( \&add_one_blue_Yuko,    "c" );
-    $cui->set_binding( \&remove_one_blue_Yuko, "C" );
+    $cui->set_binding( \&add_one_blue_yuko,    "c" );
+    $cui->set_binding( \&remove_one_blue_yuko, "C" );
 
     # -----------------------------------------------
 
     $win2->focus();
 
-    $textviewer = $win2->add( 'menu', 'TextViewer', -text => printMenu(), );
+    $textviewer = $win2->add( 'menu', 'TextViewer', -text => print_menu(), );
 
     $cui->mainloop();
     return;
@@ -143,7 +143,7 @@ sub run {
 # Sub Routines
 # -----------------------------------------------
 
-sub printMenu {
+sub print_menu {
     my $welcome;
 
     $welcome .=
@@ -185,61 +185,61 @@ sub printMenu {
     return ($welcome);
 }
 
-sub ResetCounters {
+sub reset_counters {
     $segments = 1;
 
-    $blue_Attack    = 0;
-    $blue_EffAttack = 0;
-    $blue_Koka      = 0;
-    $blue_Yuko      = 0;
-    $blue_Wazari    = 0;
-    $blue_Ippon     = 0;
-    $blue_Penalty   = 0;
+    $blue_attack    = 0;
+    $blue_effattack = 0;
+    $blue_koka      = 0;
+    $blue_yuko      = 0;
+    $blue_wazari    = 0;
+    $blue_ippon     = 0;
+    $blue_penalty   = 0;
 
-    $white_Attack    = 0;
-    $white_EffAttack = 0;
-    $white_Koka      = 0;
-    $white_Yuko      = 0;
-    $white_Wazari    = 0;
-    $white_Ippon     = 0;
-    $white_Penalty   = 0;
+    $white_attack    = 0;
+    $white_effattack = 0;
+    $white_koka      = 0;
+    $white_yuko      = 0;
+    $white_wazari    = 0;
+    $white_ippon     = 0;
+    $white_penalty   = 0;
 
     $events = 0;
     return $segments;
 }
 
-sub PrintResults {
+sub print_results {
     print "\n\n";
 
-    my @months   = qw(Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec);
-    my @weekDays = qw(Sun Mon Tue Wed Thu Fri Sat Sun);
+    my @months    = qw(Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec);
+    my @week_days = qw(Sun Mon Tue Wed Thu Fri Sat Sun);
     my (
-        $seconds,    $minute,    $hour,
-        $dayOfMonth, $month,     $yearOffset,
-        $dayOfWeek,  $dayOfYear, $daylightSavings
+        $seconds,      $minute,      $hour,
+        $day_of_month, $month,       $year_offset,
+        $day_of_week,  $day_of_year, $day_light_savings
     ) = localtime();
-    my $year = 1900 + $yearOffset;
-    my $theTime =
-"$hour:$minute:$seconds, $weekDays[$dayOfWeek] $months[$month] $dayOfMonth, $year";
-    print "Notation Time and Date\n$theTime\n\n";
+    my $year = 1900 + $year_offset;
+    my $the_time =
+"$hour:$minute:$seconds, $week_days[$day_of_week] $months[$month] $day_of_month, $year";
+    print "Notation Time and Date\n$the_time\n\n";
 
     print "Segments: $segments\n";
     print "\nBLUE\n";
-    print "Ineffective Attacks: $blue_Attack\n";
-    print "Effective Attacks: $blue_EffAttack\n";
-    print "Koka: $blue_Koka\n";
-    print "Yuka: $blue_Yuko\n";
-    print "Wazari: $blue_Wazari\n";
-    print "Ippon: $blue_Ippon\n";
-    print "Penalty: $blue_Penalty\n";
+    print "Ineffective Attacks: $blue_attack\n";
+    print "Effective Attacks: $blue_effattack\n";
+    print "Koka: $blue_koka\n";
+    print "Yuka: $blue_yuko\n";
+    print "Wazari: $blue_wazari\n";
+    print "Ippon: $blue_ippon\n";
+    print "Penalty: $blue_penalty\n";
     print "\nWHITE\n";
-    print "Ineffective Attacks: $white_Attack\n";
-    print "Effective Attacks: $white_EffAttack\n";
-    print "Koka: $white_Koka\n";
-    print "Yuka: $white_Yuko\n";
-    print "Wazari: $white_Wazari\n";
-    print "Ippon: $white_Ippon\n";
-    print "Penalty: $white_Penalty\n\n\n";
+    print "Ineffective Attacks: $white_attack\n";
+    print "Effective Attacks: $white_effattack\n";
+    print "Koka: $white_koka\n";
+    print "Yuka: $white_yuko\n";
+    print "Wazari: $white_wazari\n";
+    print "Ippon: $white_ippon\n";
+    print "Penalty: $white_penalty\n\n\n";
     return;
 }
 
@@ -251,91 +251,91 @@ sub dumb_test {
 
 sub show_blue {
     my $temp = " \n";
-    $temp .= "Ineffective Attacks: $blue_Attack\n";
-    $temp .= "Effective Attacks: $blue_EffAttack\n";
-    $temp .= "Koka: $blue_Koka\n";
-    $temp .= "Yuka: $blue_Yuko\n";
-    $temp .= "Wazari: $blue_Wazari\n";
-    $temp .= "Ippon: $blue_Ippon\n";
-    $temp .= "Penalty: $blue_Penalty\n";
+    $temp .= "Ineffective Attacks: $blue_attack\n";
+    $temp .= "Effective Attacks: $blue_effattack\n";
+    $temp .= "Koka: $blue_koka\n";
+    $temp .= "Yuka: $blue_yuko\n";
+    $temp .= "Wazari: $blue_wazari\n";
+    $temp .= "Ippon: $blue_ippon\n";
+    $temp .= "Penalty: $blue_penalty\n";
     return $temp;
 
 }
 
 sub show_white {
     my $temp = " \n";
-    $temp .= "Ineffective Attacks: $white_Attack\n";
-    $temp .= "Effective Attacks: $white_EffAttack\n";
-    $temp .= "Koka: $white_Koka\n";
-    $temp .= "Yuka: $white_Yuko\n";
-    $temp .= "Wazari: $white_Wazari\n";
-    $temp .= "Ippon: $white_Ippon\n";
-    $temp .= "Penalty: $white_Penalty\n\n\n";
+    $temp .= "Ineffective Attacks: $white_attack\n";
+    $temp .= "Effective Attacks: $white_effattack\n";
+    $temp .= "Koka: $white_koka\n";
+    $temp .= "Yuka: $white_yuko\n";
+    $temp .= "Wazari: $white_wazari\n";
+    $temp .= "Ippon: $white_ippon\n";
+    $temp .= "Penalty: $white_penalty\n\n\n";
     return $temp;
 
 }
 
-sub add_one_blue_Attack {
-    $blue_Attack++;
+sub add_one_blue_attack {
+    $blue_attack++;
     $info_blue->text( show_blue() );
     $win1->focus();
-    return ($blue_Attack);
+    return ($blue_attack);
 
 }
 
-sub remove_one_blue_Attack {
-    $blue_Attack--;
+sub remove_one_blue_attack {
+    $blue_attack--;
     $info_blue->text( show_blue() );
     $win1->focus();
-    return ($blue_Attack);
+    return ($blue_attack);
 
 }
 
-sub add_one_blue_EffAttack {
-    $blue_EffAttack++;
+sub add_one_blue_effattack {
+    $blue_effattack++;
     $info_blue->text( show_blue() );
     $win1->focus();
-    return ($blue_EffAttack);
+    return ($blue_effattack);
 
 }
 
-sub remove_one_blue_EffAttack {
-    $blue_EffAttack--;
+sub remove_one_blue_effattack {
+    $blue_effattack--;
     $info_blue->text( show_blue() );
     $win1->focus();
-    return ($blue_EffAttack);
+    return ($blue_effattack);
 
 }
 
-sub add_one_blue_Koka {
-    $blue_Koka++;
+sub add_one_blue_koka {
+    $blue_koka++;
     $info_blue->text( show_blue() );
     $win1->focus();
-    return ($blue_Koka);
+    return ($blue_koka);
 
 }
 
-sub remove_one_blue_Koka {
-    $blue_Koka--;
+sub remove_one_blue_koka {
+    $blue_koka--;
     $info_blue->text( show_blue() );
     $win1->focus();
-    return ($blue_Koka);
+    return ($blue_koka);
 
 }
 
-sub add_one_blue_Yuko {
-    $blue_Yuko++;
+sub add_one_blue_yuko {
+    $blue_yuko++;
     $info_blue->text( show_blue() );
     $win1->focus();
-    return ($blue_Yuko);
+    return ($blue_yuko);
 
 }
 
-sub remove_one_blue_Yuko {
-    $blue_Yuko--;
+sub remove_one_blue_yuko {
+    $blue_yuko--;
     $info_blue->text( show_blue() );
     $win1->focus();
-    return ($blue_Yuko);
+    return ($blue_yuko);
 
 }
 
