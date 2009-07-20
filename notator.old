@@ -1,4 +1,4 @@
-package Local::notator;
+package Local::Notator;
 
 use strict;
 use warnings;
@@ -6,7 +6,6 @@ use warnings;
 use English qw( -no_match_vars );
 use version;
 use Curses::UI;
-
 
 $OUTPUT_AUTOFLUSH = 1;
 
@@ -126,6 +125,9 @@ sub run {
 
     $cui->set_binding( \&add_one_blue_Koka,    "v" );
     $cui->set_binding( \&remove_one_blue_Koka, "V" );
+
+    $cui->set_binding( \&add_one_blue_Yuko,    "c" );
+    $cui->set_binding( \&remove_one_blue_Yuko, "C" );
 
     # -----------------------------------------------
 
@@ -320,6 +322,24 @@ sub remove_one_blue_Koka {
     return ($blue_Koka);
 
 }
+
+
+sub add_one_blue_Yuko {
+    $blue_Yuko++;
+    $info_blue->text( show_blue() );
+    $win1->focus();
+    return ($blue_Yuko);
+
+}
+
+sub remove_one_blue_Yuko {
+    $blue_Yuko--;
+    $info_blue->text( show_blue() );
+    $win1->focus();
+    return ($blue_Yuko);
+
+}
+
 
 sub exit_dialog {
     my $return = $cui->dialog(

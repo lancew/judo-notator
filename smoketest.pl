@@ -9,10 +9,10 @@ use Perl::Tidy;
 use File::Find::Rule;
 use Test::Harness qw(&runtests);
 
-my $file   = 'notator.pl';
-my $backup = 'notator.old';
+my $file   = 'Notator.pl';
+my $backup = 'Notator.old';
 
-rename( $file, 'notator.old' );
+rename( $file, 'Notator.old' );
 perltidy( source => $backup, destination => $file );
 
 for ( my $count = 1 ; $count < 6 ; $count++ ) {

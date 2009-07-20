@@ -1,4 +1,4 @@
-package Local::notator;
+package Local::Notator;
 
 use strict;
 use warnings;
@@ -125,6 +125,9 @@ sub run {
 
     $cui->set_binding( \&add_one_blue_Koka,    "v" );
     $cui->set_binding( \&remove_one_blue_Koka, "V" );
+
+    $cui->set_binding( \&add_one_blue_Yuko,    "c" );
+    $cui->set_binding( \&remove_one_blue_Yuko, "C" );
 
     # -----------------------------------------------
 
@@ -317,6 +320,22 @@ sub remove_one_blue_Koka {
     $info_blue->text( show_blue() );
     $win1->focus();
     return ($blue_Koka);
+
+}
+
+sub add_one_blue_Yuko {
+    $blue_Yuko++;
+    $info_blue->text( show_blue() );
+    $win1->focus();
+    return ($blue_Yuko);
+
+}
+
+sub remove_one_blue_Yuko {
+    $blue_Yuko--;
+    $info_blue->text( show_blue() );
+    $win1->focus();
+    return ($blue_Yuko);
 
 }
 
