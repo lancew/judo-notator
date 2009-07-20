@@ -166,6 +166,8 @@ sub run {
     $cui->set_binding( \&add_one_white_penalty,    'u' );
     $cui->set_binding( \&remove_one_white_penalty, 'U' );
 
+    $cui->set_binding( \&add_one_matte, '1' );
+
     # -----------------------------------------------
 
     $win2->focus();
@@ -218,6 +220,7 @@ sub print_menu {
 
     $welcome .=
 "-------------------------------------------------------------------------------\n";
+	$welcome .= "Segments: $segments \n";
 
     return ($welcome);
 }
@@ -540,6 +543,13 @@ sub remove_one_white_penalty {
 }
 
 # ------------------
+
+sub add_one_matte {
+    $segments++;
+    $textviewer->text( print_menu() );
+    $win3->focus();
+	return($segments);
+}
 
 sub exit_dialog {
     my $return = $cui->dialog(
