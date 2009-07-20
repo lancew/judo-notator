@@ -6,6 +6,7 @@ use warnings;
 use English qw( -no_match_vars );
 use version;
 use Curses::UI;
+use Readonly;
 
 $OUTPUT_AUTOFLUSH = 1;
 
@@ -70,10 +71,15 @@ my $info_blue;
 my $info_white;
 my $textviewer;
 
+Readonly my $BASEYEAR => 1900;
+
 # -----------------------------------------------
 # MAIN LOOP
 # -----------------------------------------------
-__PACKAGE__->run() unless caller();
+if ( !caller ) {
+    __PACKAGE__->run();
+
+}
 
 sub run {
 
@@ -82,7 +88,7 @@ sub run {
         'win1', 'Window',
         -border => 1,
         -title  => 'BLUE',
-        -bfg    => "blue",
+        -bfg    => 'blue',
         -width  => 35,
         -pad    => 2,
     );
@@ -102,7 +108,7 @@ sub run {
         -x      => 120,
         -width  => 35,
         -title  => 'WHITE',
-        -bfg    => "white",
+        -bfg    => 'white',
         -pad    => 2,
     );
 
@@ -114,20 +120,20 @@ sub run {
     # -----------------------------------------------
 
     $cui->set_binding( \&exit_dialog, "\cQ" );
-    $cui->set_binding( \&exit_dialog, "q" );
-    $cui->set_binding( \&exit_dialog, "Q" );
+    $cui->set_binding( \&exit_dialog, 'q' );
+    $cui->set_binding( \&exit_dialog, 'Q' );
 
-    $cui->set_binding( \&add_one_blue_attack,    "f" );
-    $cui->set_binding( \&remove_one_blue_attack, "F" );
+    $cui->set_binding( \&add_one_blue_attack,    'f' );
+    $cui->set_binding( \&remove_one_blue_attack, 'F' );
 
-    $cui->set_binding( \&add_one_blue_effattack,    "d" );
-    $cui->set_binding( \&remove_one_blue_effattack, "D" );
+    $cui->set_binding( \&add_one_blue_effattack,    'd' );
+    $cui->set_binding( \&remove_one_blue_effattack, 'D' );
 
-    $cui->set_binding( \&add_one_blue_koka,    "v" );
-    $cui->set_binding( \&remove_one_blue_koka, "V" );
+    $cui->set_binding( \&add_one_blue_koka,    'v' );
+    $cui->set_binding( \&remove_one_blue_koka, 'V' );
 
-    $cui->set_binding( \&add_one_blue_yuko,    "c" );
-    $cui->set_binding( \&remove_one_blue_yuko, "C" );
+    $cui->set_binding( \&add_one_blue_yuko,    'c' );
+    $cui->set_binding( \&remove_one_blue_yuko, 'C' );
 
     # -----------------------------------------------
 
@@ -209,7 +215,8 @@ sub reset_counters {
 }
 
 sub print_results {
-    print "\n\n";
+    my $results;
+    $results .= "\n\n";
 
     my @months    = qw(Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec);
     my @week_days = qw(Sun Mon Tue Wed Thu Fri Sat Sun);
@@ -217,35 +224,35 @@ sub print_results {
         $seconds,      $minute,      $hour,
         $day_of_month, $month,       $year_offset,
         $day_of_week,  $day_of_year, $day_light_savings
-    ) = localtime();
-    my $year = 1900 + $year_offset;
+    ) = localtime;
+    my $year = $BASEYEAR + $year_offset;
     my $the_time =
 "$hour:$minute:$seconds, $week_days[$day_of_week] $months[$month] $day_of_month, $year";
-    print "Notation Time and Date\n$the_time\n\n";
+    $results .= "Notation Time and Date\n$the_time\n\n";
 
-    print "Segments: $segments\n";
-    print "\nBLUE\n";
-    print "Ineffective Attacks: $blue_attack\n";
-    print "Effective Attacks: $blue_effattack\n";
-    print "Koka: $blue_koka\n";
-    print "Yuka: $blue_yuko\n";
-    print "Wazari: $blue_wazari\n";
-    print "Ippon: $blue_ippon\n";
-    print "Penalty: $blue_penalty\n";
-    print "\nWHITE\n";
-    print "Ineffective Attacks: $white_attack\n";
-    print "Effective Attacks: $white_effattack\n";
-    print "Koka: $white_koka\n";
-    print "Yuka: $white_yuko\n";
-    print "Wazari: $white_wazari\n";
-    print "Ippon: $white_ippon\n";
-    print "Penalty: $white_penalty\n\n\n";
-    return;
+    $results .= "Segments: $segments\n";
+    $results .= "\nBLUE\n";
+    $results .= "Ineffective Attacks: $blue_attack\n";
+    $results .= "Effective Attacks: $blue_effattack\n";
+    $results .= "Koka: $blue_koka\n";
+    $results .= "Yuka: $blue_yuko\n";
+    $results .= "Wazari: $blue_wazari\n";
+    $results .= "Ippon: $blue_ippon\n";
+    $results .= "Penalty: $blue_penalty\n";
+    $results .= "\nWHITE\n";
+    $results .= "Ineffective Attacks: $white_attack\n";
+    $results .= "Effective Attacks: $white_effattack\n";
+    $results .= "Koka: $white_koka\n";
+    $results .= "Yuka: $white_yuko\n";
+    $results .= "Wazari: $white_wazari\n";
+    $results .= "Ippon: $white_ippon\n";
+    $results .= "Penalty: $white_penalty\n\n\n";
+    return ($results);
 }
 
 sub dumb_test {
-    print "yes";
-    return 1;
+    my $test = 'yes';
+    return ($test);
 
 }
 
@@ -341,13 +348,13 @@ sub remove_one_blue_yuko {
 
 sub exit_dialog {
     my $return = $cui->dialog(
-        -message => "Do you really want to quit?",
-        -title   => "Are you sure???",
+        -message => 'Do you really want to quit?',
+        -title   => 'Are you sure???',
         -buttons => [ 'yes', 'no' ],
 
     );
 
-    exit(0) if $return;
+    exit if $return;
     return;
 }
 
