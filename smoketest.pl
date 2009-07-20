@@ -20,7 +20,7 @@ for ( my $count = 1 ; $count < 6 ; $count++ ) {
     my $critic = Perl::Critic->new( -severity => $count );
     my @violations = $critic->critique($file);
 
-    #print @violations;
+    #print $violations;
     print MYFILE @violations;
     close(MYFILE);
 }

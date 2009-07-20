@@ -84,6 +84,7 @@ if ( !caller ) {
 sub run {
 
     $cui = new Curses::UI( -color_support => 1 );
+
     $win1 = $cui->add(
         'win1', 'Window',
         -border => 1,
@@ -140,9 +141,30 @@ sub run {
 
     $cui->set_binding( \&add_one_blue_ippon,    'z' );
     $cui->set_binding( \&remove_one_blue_ippon, 'Z' );
-    
+
     $cui->set_binding( \&add_one_blue_penalty,    't' );
     $cui->set_binding( \&remove_one_blue_penalty, 'T' );
+
+    $cui->set_binding( \&add_one_white_attack,    'j' );
+    $cui->set_binding( \&remove_one_white_attack, 'J' );
+
+    $cui->set_binding( \&add_one_white_effattack,    'k' );
+    $cui->set_binding( \&remove_one_white_effattack, 'K' );
+
+    $cui->set_binding( \&add_one_white_koka,    'n' );
+    $cui->set_binding( \&remove_one_white_koka, 'N' );
+
+    $cui->set_binding( \&add_one_white_yuko,    'm' );
+    $cui->set_binding( \&remove_one_white_yuko, 'M' );
+
+    $cui->set_binding( \&add_one_white_wazari,    q{,} );
+    $cui->set_binding( \&remove_one_white_wazari, q{<} );
+
+    $cui->set_binding( \&add_one_white_ippon,    q{.} );
+    $cui->set_binding( \&remove_one_white_ippon, q{>} );
+
+    $cui->set_binding( \&add_one_white_penalty,    'u' );
+    $cui->set_binding( \&remove_one_white_penalty, 'U' );
 
     # -----------------------------------------------
 
@@ -387,7 +409,6 @@ sub remove_one_blue_ippon {
 
 }
 
-
 sub add_one_blue_penalty {
     $blue_penalty++;
     $info_blue->text( show_blue() );
@@ -406,7 +427,122 @@ sub remove_one_blue_penalty {
 
 
 
+# ------------------
 
+sub add_one_white_attack {
+    $white_attack++;
+    $info_white->text( show_white() );
+    $win3->focus();
+    return ($white_attack);
+
+}
+
+sub remove_one_white_attack {
+    $white_attack--;
+    $info_white->text( show_white() );
+    $win3->focus();
+    return ($white_attack);
+
+}
+
+sub add_one_white_effattack {
+    $white_effattack++;
+    $info_white->text( show_white() );
+    $win3->focus();
+    return ($white_effattack);
+
+}
+
+sub remove_one_white_effattack {
+    $white_effattack--;
+    $info_white->text( show_white() );
+    $win3->focus();
+    return ($white_effattack);
+
+}
+
+sub add_one_white_koka {
+    $white_koka++;
+    $info_white->text( show_white() );
+    $win3->focus();
+    return ($white_koka);
+
+}
+
+sub remove_one_white_koka {
+    $white_koka--;
+    $info_white->text( show_white() );
+    $win3->focus();
+    return ($white_koka);
+
+}
+
+sub add_one_white_yuko {
+    $white_yuko++;
+    $info_white->text( show_white() );
+    $win3->focus();
+    return ($white_yuko);
+
+}
+
+sub remove_one_white_yuko {
+    $white_yuko--;
+    $info_white->text( show_white() );
+    $win3->focus();
+    return ($white_yuko);
+
+}
+
+sub add_one_white_wazari {
+    $white_wazari++;
+    $info_white->text( show_white() );
+    $win3->focus();
+    return ($white_wazari);
+
+}
+
+sub remove_one_white_wazari {
+    $white_wazari--;
+    $info_white->text( show_white() );
+    $win3->focus();
+    return ($white_wazari);
+
+}
+
+sub add_one_white_ippon {
+    $white_ippon++;
+    $info_white->text( show_white() );
+    $win3->focus();
+    return ($white_ippon);
+
+}
+
+sub remove_one_white_ippon {
+    $white_ippon--;
+    $info_white->text( show_white() );
+    $win3->focus();
+    return ($white_ippon);
+
+}
+
+sub add_one_white_penalty {
+    $white_penalty++;
+    $info_white->text( show_white() );
+    $win3->focus();
+    return ($white_penalty);
+
+}
+
+sub remove_one_white_penalty {
+    $white_penalty--;
+    $info_white->text( show_white() );
+    $win3->focus();
+    return ($white_penalty);
+
+}
+
+
+# ------------------
 
 sub exit_dialog {
     my $return = $cui->dialog(
