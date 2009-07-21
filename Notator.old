@@ -126,7 +126,7 @@ sub run {
     $cui->set_binding( \&exit_dialog, 'Q' );
 
     $cui->set_binding( \&save_results, 'w' );
-    $cui->set_binding( sub { reset_counters();    update_screen(); }, 'a' );
+    $cui->set_binding( sub { reset_counters(); update_screen(); }, 'a' );
 
     $cui->set_binding( sub { add_one_blue_attack(); update_screen(); }, 'f' );
     $cui->set_binding( sub { remove_one_blue_attack(); update_screen(); },
@@ -208,7 +208,7 @@ sub print_menu {
 "|  F = Attack                        |  J = Attack                            |\n";
     $welcome .=
 "|  D = Effective Attack              |  K = Effective Attack                  |\n";
-       $welcome .=
+    $welcome .=
 "|  V = Koka                          |  N = Koka                              |\n";
     $welcome .=
 "|  C = Yoka                          |  M = Yoka                              |\n";
@@ -222,7 +222,7 @@ sub print_menu {
 "|                                    |                                        |\n";
     $welcome .=
 "|                              ENTER = MATTE                                  |\n";
-$welcome .=
+    $welcome .=
 "|                          w = save data to file                              |\n";
     $welcome .=
 "|                           a = reset counters                                |\n";
