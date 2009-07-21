@@ -7,6 +7,7 @@ use English qw( -no_match_vars );
 use version;
 use Curses::UI;
 use Readonly;
+use IO::File;
 
 $OUTPUT_AUTOFLUSH = 1;
 
@@ -16,7 +17,7 @@ our $VERSION = qv('0.2.0');
 # ---------------------------------------------------------
 #
 # This file created by Lance Wicks, 18 April 2009.
-#                    Last Modified, 20 July 2009.
+#                    Last Modified, 21 July 2009.
 #
 #
 #    notator.pl - Notation software for BSc. project.
@@ -124,47 +125,61 @@ sub run {
     $cui->set_binding( \&exit_dialog, 'q' );
     $cui->set_binding( \&exit_dialog, 'Q' );
 
-    $cui->set_binding( sub { add_one_blue_attack(); update_screen(); },    'f' );
-    $cui->set_binding( sub { remove_one_blue_attack(); update_screen(); }, 'F' );
+    $cui->set_binding( \&save_results, 'w' );
+    $cui->set_binding( sub { reset_counters();    update_screen(); }, 'a' );
 
-    $cui->set_binding( sub { add_one_blue_effattack(); update_screen(); },    'd' );
-    $cui->set_binding( sub { remove_one_blue_effattack(); update_screen(); }, 'D' );
+    $cui->set_binding( sub { add_one_blue_attack(); update_screen(); }, 'f' );
+    $cui->set_binding( sub { remove_one_blue_attack(); update_screen(); },
+        'F' );
 
-    $cui->set_binding( sub { add_one_blue_koka(); update_screen(); },    'v' );
+    $cui->set_binding( sub { add_one_blue_effattack(); update_screen(); },
+        'd' );
+    $cui->set_binding( sub { remove_one_blue_effattack(); update_screen(); },
+        'D' );
+
+    $cui->set_binding( sub { add_one_blue_koka();    update_screen(); }, 'v' );
     $cui->set_binding( sub { remove_one_blue_koka(); update_screen(); }, 'V' );
 
-    $cui->set_binding( sub { add_one_blue_yuko(); update_screen(); },    'c' );
+    $cui->set_binding( sub { add_one_blue_yuko();    update_screen(); }, 'c' );
     $cui->set_binding( sub { remove_one_blue_yuko(); update_screen(); }, 'C' );
 
-    $cui->set_binding( sub { add_one_blue_wazari(); update_screen(); },    'x' );
-    $cui->set_binding( sub { remove_one_blue_wazari(); update_screen(); }, 'X' );
+    $cui->set_binding( sub { add_one_blue_wazari(); update_screen(); }, 'x' );
+    $cui->set_binding( sub { remove_one_blue_wazari(); update_screen(); },
+        'X' );
 
-    $cui->set_binding( sub { add_one_blue_ippon(); update_screen(); },    'z' );
+    $cui->set_binding( sub { add_one_blue_ippon();    update_screen(); }, 'z' );
     $cui->set_binding( sub { remove_one_blue_ippon(); update_screen(); }, 'Z' );
 
-    $cui->set_binding( sub { add_one_blue_penalty(); update_screen(); },    't' );
-    $cui->set_binding( sub { remove_one_blue_penalty(); update_screen(); }, 'T' );
+    $cui->set_binding( sub { add_one_blue_penalty(); update_screen(); }, 't' );
+    $cui->set_binding( sub { remove_one_blue_penalty(); update_screen(); },
+        'T' );
 
-    $cui->set_binding( sub { add_one_white_attack(); update_screen(); },    'j' );
-    $cui->set_binding( sub { remove_one_white_attack(); update_screen(); }, 'J' );
+    $cui->set_binding( sub { add_one_white_attack(); update_screen(); }, 'j' );
+    $cui->set_binding( sub { remove_one_white_attack(); update_screen(); },
+        'J' );
 
-    $cui->set_binding( sub { add_one_white_effattack(); update_screen(); },    'k' );
-    $cui->set_binding( sub { remove_one_white_effattack(); update_screen(); }, 'K' );
+    $cui->set_binding( sub { add_one_white_effattack(); update_screen(); },
+        'k' );
+    $cui->set_binding( sub { remove_one_white_effattack(); update_screen(); },
+        'K' );
 
-    $cui->set_binding( sub { add_one_white_koka(); update_screen(); },    'n' );
+    $cui->set_binding( sub { add_one_white_koka();    update_screen(); }, 'n' );
     $cui->set_binding( sub { remove_one_white_koka(); update_screen(); }, 'N' );
 
-    $cui->set_binding( sub { add_one_white_yuko(); update_screen(); },    'm' );
+    $cui->set_binding( sub { add_one_white_yuko();    update_screen(); }, 'm' );
     $cui->set_binding( sub { remove_one_white_yuko(); update_screen(); }, 'M' );
 
-    $cui->set_binding( sub { add_one_white_wazari(); update_screen(); },    q{,} );
-    $cui->set_binding( sub { remove_one_white_wazari(); update_screen(); }, q{<} );
+    $cui->set_binding( sub { add_one_white_wazari(); update_screen(); }, q{,} );
+    $cui->set_binding( sub { remove_one_white_wazari(); update_screen(); },
+        q{<} );
 
-    $cui->set_binding( sub { add_one_white_ippon(); update_screen(); },    q{.} );
-    $cui->set_binding( sub { remove_one_white_ippon(); update_screen(); }, q{>} );
+    $cui->set_binding( sub { add_one_white_ippon(); update_screen(); }, q{.} );
+    $cui->set_binding( sub { remove_one_white_ippon(); update_screen(); },
+        q{>} );
 
-    $cui->set_binding( sub { add_one_white_penalty(); update_screen(); },    'u' );
-    $cui->set_binding( sub { remove_one_white_penalty(); update_screen(); }, 'U' );
+    $cui->set_binding( sub { add_one_white_penalty(); update_screen(); }, 'u' );
+    $cui->set_binding( sub { remove_one_white_penalty(); update_screen(); },
+        'U' );
 
     $cui->set_binding( sub { add_one_matte(); update_screen(); }, '343' );
 
@@ -193,9 +208,7 @@ sub print_menu {
 "|  F = Attack                        |  J = Attack                            |\n";
     $welcome .=
 "|  D = Effective Attack              |  K = Effective Attack                  |\n";
-    $welcome .=
-"|                                    |                                        |\n";
-    $welcome .=
+       $welcome .=
 "|  V = Koka                          |  N = Koka                              |\n";
     $welcome .=
 "|  C = Yoka                          |  M = Yoka                              |\n";
@@ -209,10 +222,12 @@ sub print_menu {
 "|                                    |                                        |\n";
     $welcome .=
 "|                              ENTER = MATTE                                  |\n";
+$welcome .=
+"|                          w = save data to file                              |\n";
     $welcome .=
-"|                                    |                                        |\n";
+"|                           a = reset counters                                |\n";
     $welcome .=
-"|                              Q     = SOREMADE                               |\n";
+"|                                  Q = Quit                                   |\n";
     $welcome .=
 "|                                    |                                        |\n";
     $welcome .=
@@ -313,6 +328,33 @@ sub show_white {
     $temp .= "Ippon: $white_ippon\n";
     $temp .= "Penalty: $white_penalty\n\n\n";
     return $temp;
+
+}
+
+sub results {
+    my $results;
+
+    #$results .= show_blue();
+    #$results .= show_white();
+    #$results .= 'Segments;' . $segments;
+    $results = print_results();
+    return $results;
+}
+
+sub save_results {
+    my $filename = time() . '.txt';
+    my $fh       = new IO::File "> $filename";
+    if ( defined $fh ) {
+        print {$fh} results() or croak('Unable to save');
+        $fh->close;
+    }
+
+    my $dialog = $cui->add( 'mydialog', 'Dialog::Basic',
+        -message => "Data saved to $filename" );
+    $dialog->focus;
+    $cui->delete('mydialog');
+
+    return 1;
 
 }
 
@@ -542,6 +584,7 @@ sub exit_dialog {
     );
 
     exit if $return;
+
     return;
 }
 

@@ -7,6 +7,7 @@ use English qw( -no_match_vars );
 use version;
 use Curses::UI;
 use Readonly;
+use IO::File;
 
 $OUTPUT_AUTOFLUSH = 1;
 
@@ -16,7 +17,7 @@ our $VERSION = qv('0.2.0');
 # ---------------------------------------------------------
 #
 # This file created by Lance Wicks, 18 April 2009.
-#                    Last Modified, 20 July 2009.
+#                    Last Modified, 21 July 2009.
 #
 #
 #    notator.pl - Notation software for BSc. project.
@@ -124,6 +125,9 @@ sub run {
     $cui->set_binding( \&exit_dialog, 'q' );
     $cui->set_binding( \&exit_dialog, 'Q' );
 
+    $cui->set_binding( \&save_results, 'w' );
+    $cui->set_binding( sub { reset_counters(); update_screen(); }, 'a' );
+
     $cui->set_binding( sub { add_one_blue_attack(); update_screen(); }, 'f' );
     $cui->set_binding( sub { remove_one_blue_attack(); update_screen(); },
         'F' );
@@ -205,8 +209,6 @@ sub print_menu {
     $welcome .=
 "|  D = Effective Attack              |  K = Effective Attack                  |\n";
     $welcome .=
-"|                                    |                                        |\n";
-    $welcome .=
 "|  V = Koka                          |  N = Koka                              |\n";
     $welcome .=
 "|  C = Yoka                          |  M = Yoka                              |\n";
@@ -221,9 +223,11 @@ sub print_menu {
     $welcome .=
 "|                              ENTER = MATTE                                  |\n";
     $welcome .=
-"|                                    |                                        |\n";
+"|                          w = save data to file                              |\n";
     $welcome .=
-"|                              Q     = SOREMADE                               |\n";
+"|                           a = reset counters                                |\n";
+    $welcome .=
+"|                                  Q = Quit                                   |\n";
     $welcome .=
 "|                                    |                                        |\n";
     $welcome .=
@@ -324,6 +328,33 @@ sub show_white {
     $temp .= "Ippon: $white_ippon\n";
     $temp .= "Penalty: $white_penalty\n\n\n";
     return $temp;
+
+}
+
+sub results {
+    my $results;
+
+    #$results .= show_blue();
+    #$results .= show_white();
+    #$results .= 'Segments;' . $segments;
+    $results = print_results();
+    return $results;
+}
+
+sub save_results {
+    my $filename = time() . '.txt';
+    my $fh       = new IO::File "> $filename";
+    if ( defined $fh ) {
+        print {$fh} results() or croak('Unable to save');
+        $fh->close;
+    }
+
+    my $dialog = $cui->add( 'mydialog', 'Dialog::Basic',
+        -message => "Data saved to $filename" );
+    $dialog->focus;
+    $cui->delete('mydialog');
+
+    return 1;
 
 }
 
@@ -553,6 +584,7 @@ sub exit_dialog {
     );
 
     exit if $return;
+
     return;
 }
 
