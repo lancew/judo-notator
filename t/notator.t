@@ -21,6 +21,6 @@ like( Local::Notator::show_blue(), qr/Penalty: 0/, 'show_blue is OK' );
 like( Local::Notator::show_white(), qr/Penalty: 0/, 'show_white is OK' );
 
 
-#	is( Local::Notator::add_one_blue_attack(), 1, 'add_one_blue_Attack is OK');
+# is( Local::Notator::add_one_blue_attack(), 1, 'add_one_blue_Attack is OK');
 
-
+is( Local::Notator::add_one_matte(), 2, 'add_one_matte is OK');

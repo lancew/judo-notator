@@ -124,49 +124,49 @@ sub run {
     $cui->set_binding( \&exit_dialog, 'q' );
     $cui->set_binding( \&exit_dialog, 'Q' );
 
-    $cui->set_binding( \&add_one_blue_attack,    'f' );
-    $cui->set_binding( \&remove_one_blue_attack, 'F' );
+    $cui->set_binding( sub { add_one_blue_attack(); update_screen(); },    'f' );
+    $cui->set_binding( sub { remove_one_blue_attack(); update_screen(); }, 'F' );
 
-    $cui->set_binding( \&add_one_blue_effattack,    'd' );
-    $cui->set_binding( \&remove_one_blue_effattack, 'D' );
+    $cui->set_binding( sub { add_one_blue_effattack(); update_screen(); },    'd' );
+    $cui->set_binding( sub { remove_one_blue_effattack(); update_screen(); }, 'D' );
 
-    $cui->set_binding( \&add_one_blue_koka,    'v' );
-    $cui->set_binding( \&remove_one_blue_koka, 'V' );
+    $cui->set_binding( sub { add_one_blue_koka(); update_screen(); },    'v' );
+    $cui->set_binding( sub { remove_one_blue_koka(); update_screen(); }, 'V' );
 
-    $cui->set_binding( \&add_one_blue_yuko,    'c' );
-    $cui->set_binding( \&remove_one_blue_yuko, 'C' );
+    $cui->set_binding( sub { add_one_blue_yuko(); update_screen(); },    'c' );
+    $cui->set_binding( sub { remove_one_blue_yuko(); update_screen(); }, 'C' );
 
-    $cui->set_binding( \&add_one_blue_wazari,    'x' );
-    $cui->set_binding( \&remove_one_blue_wazari, 'X' );
+    $cui->set_binding( sub { add_one_blue_wazari(); update_screen(); },    'x' );
+    $cui->set_binding( sub { remove_one_blue_wazari(); update_screen(); }, 'X' );
 
-    $cui->set_binding( \&add_one_blue_ippon,    'z' );
-    $cui->set_binding( \&remove_one_blue_ippon, 'Z' );
+    $cui->set_binding( sub { add_one_blue_ippon(); update_screen(); },    'z' );
+    $cui->set_binding( sub { remove_one_blue_ippon(); update_screen(); }, 'Z' );
 
-    $cui->set_binding( \&add_one_blue_penalty,    't' );
-    $cui->set_binding( \&remove_one_blue_penalty, 'T' );
+    $cui->set_binding( sub { add_one_blue_penalty(); update_screen(); },    't' );
+    $cui->set_binding( sub { remove_one_blue_penalty(); update_screen(); }, 'T' );
 
-    $cui->set_binding( \&add_one_white_attack,    'j' );
-    $cui->set_binding( \&remove_one_white_attack, 'J' );
+    $cui->set_binding( sub { add_one_white_attack(); update_screen(); },    'j' );
+    $cui->set_binding( sub { remove_one_white_attack(); update_screen(); }, 'J' );
 
-    $cui->set_binding( \&add_one_white_effattack,    'k' );
-    $cui->set_binding( \&remove_one_white_effattack, 'K' );
+    $cui->set_binding( sub { add_one_white_effattack(); update_screen(); },    'k' );
+    $cui->set_binding( sub { remove_one_white_effattack(); update_screen(); }, 'K' );
 
-    $cui->set_binding( \&add_one_white_koka,    'n' );
-    $cui->set_binding( \&remove_one_white_koka, 'N' );
+    $cui->set_binding( sub { add_one_white_koka(); update_screen(); },    'n' );
+    $cui->set_binding( sub { remove_one_white_koka(); update_screen(); }, 'N' );
 
-    $cui->set_binding( \&add_one_white_yuko,    'm' );
-    $cui->set_binding( \&remove_one_white_yuko, 'M' );
+    $cui->set_binding( sub { add_one_white_yuko(); update_screen(); },    'm' );
+    $cui->set_binding( sub { remove_one_white_yuko(); update_screen(); }, 'M' );
 
-    $cui->set_binding( \&add_one_white_wazari,    q{,} );
-    $cui->set_binding( \&remove_one_white_wazari, q{<} );
+    $cui->set_binding( sub { add_one_white_wazari(); update_screen(); },    q{,} );
+    $cui->set_binding( sub { remove_one_white_wazari(); update_screen(); }, q{<} );
 
-    $cui->set_binding( \&add_one_white_ippon,    q{.} );
-    $cui->set_binding( \&remove_one_white_ippon, q{>} );
+    $cui->set_binding( sub { add_one_white_ippon(); update_screen(); },    q{.} );
+    $cui->set_binding( sub { remove_one_white_ippon(); update_screen(); }, q{>} );
 
-    $cui->set_binding( \&add_one_white_penalty,    'u' );
-    $cui->set_binding( \&remove_one_white_penalty, 'U' );
+    $cui->set_binding( sub { add_one_white_penalty(); update_screen(); },    'u' );
+    $cui->set_binding( sub { remove_one_white_penalty(); update_screen(); }, 'U' );
 
-    $cui->set_binding( \&add_one_matte, '343' );
+    $cui->set_binding( sub { add_one_matte(); update_screen(); }, '343' );
 
     # -----------------------------------------------
 
@@ -318,112 +318,98 @@ sub show_white {
 
 sub add_one_blue_attack {
     $blue_attack++;
-    $info_blue->text( show_blue() );
-    $win1->focus();
+
     return ($blue_attack);
 
 }
 
 sub remove_one_blue_attack {
     $blue_attack--;
-    $info_blue->text( show_blue() );
-    $win1->focus();
+
     return ($blue_attack);
 
 }
 
 sub add_one_blue_effattack {
     $blue_effattack++;
-    $info_blue->text( show_blue() );
-    $win1->focus();
+
     return ($blue_effattack);
 
 }
 
 sub remove_one_blue_effattack {
     $blue_effattack--;
-    $info_blue->text( show_blue() );
-    $win1->focus();
+
     return ($blue_effattack);
 
 }
 
 sub add_one_blue_koka {
     $blue_koka++;
-    $info_blue->text( show_blue() );
-    $win1->focus();
+
     return ($blue_koka);
 
 }
 
 sub remove_one_blue_koka {
     $blue_koka--;
-    $info_blue->text( show_blue() );
-    $win1->focus();
+
     return ($blue_koka);
 
 }
 
 sub add_one_blue_yuko {
     $blue_yuko++;
-    $info_blue->text( show_blue() );
-    $win1->focus();
+
     return ($blue_yuko);
 
 }
 
 sub remove_one_blue_yuko {
     $blue_yuko--;
-    $info_blue->text( show_blue() );
-    $win1->focus();
+
     return ($blue_yuko);
 
 }
 
 sub add_one_blue_wazari {
     $blue_wazari++;
-    $info_blue->text( show_blue() );
-    $win1->focus();
+
     return ($blue_wazari);
 
 }
 
 sub remove_one_blue_wazari {
     $blue_wazari--;
-    $info_blue->text( show_blue() );
-    $win1->focus();
+
     return ($blue_wazari);
 
 }
 
 sub add_one_blue_ippon {
     $blue_ippon++;
-    $info_blue->text( show_blue() );
-    $win1->focus();
+
     return ($blue_ippon);
 
 }
 
 sub remove_one_blue_ippon {
     $blue_ippon--;
-    $info_blue->text( show_blue() );
-    $win1->focus();
+
     return ($blue_ippon);
 
 }
 
 sub add_one_blue_penalty {
     $blue_penalty++;
-    $info_blue->text( show_blue() );
-    $win1->focus();
+
     return ($blue_penalty);
 
 }
 
 sub remove_one_blue_penalty {
     $blue_penalty--;
-    $info_blue->text( show_blue() );
-    $win1->focus();
+
     return ($blue_penalty);
 
 }
@@ -432,112 +418,98 @@ sub remove_one_blue_penalty {
 
 sub add_one_white_attack {
     $white_attack++;
-    $info_white->text( show_white() );
-    $win3->focus();
+
     return ($white_attack);
 
 }
 
 sub remove_one_white_attack {
     $white_attack--;
-    $info_white->text( show_white() );
-    $win3->focus();
+
     return ($white_attack);
 
 }
 
 sub add_one_white_effattack {
     $white_effattack++;
-    $info_white->text( show_white() );
-    $win3->focus();
+
     return ($white_effattack);
 
 }
 
 sub remove_one_white_effattack {
     $white_effattack--;
-    $info_white->text( show_white() );
-    $win3->focus();
+
     return ($white_effattack);
 
 }
 
 sub add_one_white_koka {
     $white_koka++;
-    $info_white->text( show_white() );
-    $win3->focus();
+
     return ($white_koka);
 
 }
 
 sub remove_one_white_koka {
     $white_koka--;
-    $info_white->text( show_white() );
-    $win3->focus();
+
     return ($white_koka);
 
 }
 
 sub add_one_white_yuko {
     $white_yuko++;
-    $info_white->text( show_white() );
-    $win3->focus();
+
     return ($white_yuko);
 
 }
 
 sub remove_one_white_yuko {
     $white_yuko--;
-    $info_white->text( show_white() );
-    $win3->focus();
+
     return ($white_yuko);
 
 }
 
 sub add_one_white_wazari {
     $white_wazari++;
-    $info_white->text( show_white() );
-    $win3->focus();
+
     return ($white_wazari);
 
 }
 
 sub remove_one_white_wazari {
     $white_wazari--;
-    $info_white->text( show_white() );
-    $win3->focus();
+
     return ($white_wazari);
 
 }
 
 sub add_one_white_ippon {
     $white_ippon++;
-    $info_white->text( show_white() );
-    $win3->focus();
+
     return ($white_ippon);
 
 }
 
 sub remove_one_white_ippon {
     $white_ippon--;
-    $info_white->text( show_white() );
-    $win3->focus();
+
     return ($white_ippon);
 
 }
 
 sub add_one_white_penalty {
     $white_penalty++;
-    $info_white->text( show_white() );
-    $win3->focus();
+
     return ($white_penalty);
 
 }
 
 sub remove_one_white_penalty {
     $white_penalty--;
-    $info_white->text( show_white() );
-    $win3->focus();
+
     return ($white_penalty);
 
 }
@@ -546,10 +518,20 @@ sub remove_one_white_penalty {
 
 sub add_one_matte {
     $segments++;
-    $textviewer->text( print_menu() );
-    $win3->focus();
     return ($segments);
 }
+
+sub update_screen {
+    $info_blue->text( show_blue() );
+    $info_white->text( show_white() );
+    $textviewer->text( print_menu() );
+    $win1->focus();
+    $win3->focus();
+    $win2->focus();
+    return 1;
+}
+
+# ------------------
 
 sub exit_dialog {
     my $return = $cui->dialog(
