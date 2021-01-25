@@ -19,6 +19,7 @@ like( $text, qr/use warnings;/,
 my $rule = File::Find::Rule->new;
 $rule->file;
 $rule->name( '*.pm', '*.pl' );
+$rule->maxdepth( 1 );
 
 
 my @files = $rule->in( './');

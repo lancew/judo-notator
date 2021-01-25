@@ -6,7 +6,7 @@ use Test::Output;
 
 
 
-require 'notator.pl';
+require './notator.pl';
 
 # Dumb Test
 is( Local::Notator::dumb_test(), 'yes', 'dumb_test is OK');
