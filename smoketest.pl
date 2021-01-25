@@ -15,9 +15,9 @@ my $backup = 'Notator.old';
 rename( $file, 'Notator.old' );
 perltidy( source => $backup, destination => $file );
 
-for ( my $count = 1 ; $count < 6 ; $count++ ) {
+for ( my $count = 1; $count < 6; $count++ ) {
     open( MYFILE, ">critic-$count.txt" );
-    my $critic = Perl::Critic->new( -severity => $count );
+    my $critic     = Perl::Critic->new( -severity => $count );
     my @violations = $critic->critique($file);
 
     #print $violations;

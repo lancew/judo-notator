@@ -125,7 +125,7 @@ sub run {
     $cui->set_binding( \&exit_dialog, 'q' );
     $cui->set_binding( \&exit_dialog, 'Q' );
 
-    $cui->set_binding( \&save_results, 'w' );
+    $cui->set_binding( \&save_results,                             'w' );
     $cui->set_binding( sub { reset_counters(); update_screen(); }, 'a' );
 
     $cui->set_binding( sub { add_one_blue_attack(); update_screen(); }, 'f' );
@@ -137,24 +137,29 @@ sub run {
     $cui->set_binding( sub { remove_one_blue_effattack(); update_screen(); },
         'D' );
 
-    $cui->set_binding( sub { add_one_blue_koka();    update_screen(); }, 'v' );
-    $cui->set_binding( sub { remove_one_blue_koka(); update_screen(); }, 'V' );
+    $cui->set_binding( sub { add_one_blue_koka(); update_screen(); }, 'v' );
+    $cui->set_binding( sub { remove_one_blue_koka(); update_screen(); },
+        'V' );
 
-    $cui->set_binding( sub { add_one_blue_yuko();    update_screen(); }, 'c' );
-    $cui->set_binding( sub { remove_one_blue_yuko(); update_screen(); }, 'C' );
+    $cui->set_binding( sub { add_one_blue_yuko(); update_screen(); }, 'c' );
+    $cui->set_binding( sub { remove_one_blue_yuko(); update_screen(); },
+        'C' );
 
     $cui->set_binding( sub { add_one_blue_wazari(); update_screen(); }, 'x' );
     $cui->set_binding( sub { remove_one_blue_wazari(); update_screen(); },
         'X' );
 
-    $cui->set_binding( sub { add_one_blue_ippon();    update_screen(); }, 'z' );
-    $cui->set_binding( sub { remove_one_blue_ippon(); update_screen(); }, 'Z' );
+    $cui->set_binding( sub { add_one_blue_ippon(); update_screen(); }, 'z' );
+    $cui->set_binding( sub { remove_one_blue_ippon(); update_screen(); },
+        'Z' );
 
-    $cui->set_binding( sub { add_one_blue_penalty(); update_screen(); }, 't' );
+    $cui->set_binding( sub { add_one_blue_penalty(); update_screen(); },
+        't' );
     $cui->set_binding( sub { remove_one_blue_penalty(); update_screen(); },
         'T' );
 
-    $cui->set_binding( sub { add_one_white_attack(); update_screen(); }, 'j' );
+    $cui->set_binding( sub { add_one_white_attack(); update_screen(); },
+        'j' );
     $cui->set_binding( sub { remove_one_white_attack(); update_screen(); },
         'J' );
 
@@ -163,21 +168,26 @@ sub run {
     $cui->set_binding( sub { remove_one_white_effattack(); update_screen(); },
         'K' );
 
-    $cui->set_binding( sub { add_one_white_koka();    update_screen(); }, 'n' );
-    $cui->set_binding( sub { remove_one_white_koka(); update_screen(); }, 'N' );
+    $cui->set_binding( sub { add_one_white_koka(); update_screen(); }, 'n' );
+    $cui->set_binding( sub { remove_one_white_koka(); update_screen(); },
+        'N' );
 
-    $cui->set_binding( sub { add_one_white_yuko();    update_screen(); }, 'm' );
-    $cui->set_binding( sub { remove_one_white_yuko(); update_screen(); }, 'M' );
+    $cui->set_binding( sub { add_one_white_yuko(); update_screen(); }, 'm' );
+    $cui->set_binding( sub { remove_one_white_yuko(); update_screen(); },
+        'M' );
 
-    $cui->set_binding( sub { add_one_white_wazari(); update_screen(); }, q{,} );
+    $cui->set_binding( sub { add_one_white_wazari(); update_screen(); },
+        q{,} );
     $cui->set_binding( sub { remove_one_white_wazari(); update_screen(); },
         q{<} );
 
-    $cui->set_binding( sub { add_one_white_ippon(); update_screen(); }, q{.} );
+    $cui->set_binding( sub { add_one_white_ippon(); update_screen(); },
+        q{.} );
     $cui->set_binding( sub { remove_one_white_ippon(); update_screen(); },
         q{>} );
 
-    $cui->set_binding( sub { add_one_white_penalty(); update_screen(); }, 'u' );
+    $cui->set_binding( sub { add_one_white_penalty(); update_screen(); },
+        'u' );
     $cui->set_binding( sub { remove_one_white_penalty(); update_screen(); },
         'U' );
 
@@ -200,41 +210,41 @@ sub run {
 sub print_menu {
     my $welcome;
 
-    $welcome .=
-"-------------------------------------------------------------------------------\n";
-    $welcome .=
-"|                     BLUE           |                   WHITE                |\n";
-    $welcome .=
-"|  F = Attack                        |  J = Attack                            |\n";
-    $welcome .=
-"|  D = Effective Attack              |  K = Effective Attack                  |\n";
-    $welcome .=
-"|  V = Koka                          |  N = Koka                              |\n";
-    $welcome .=
-"|  C = Yoka                          |  M = Yoka                              |\n";
-    $welcome .=
-"|  X = Wazari                        |  < = Wazari                            |\n";
-    $welcome .=
-"|  Z = Ippon                         |  > = Ippon                             |\n";
-    $welcome .=
-"|  T = Receive Penalty               |   U = Receive Penalty                  |\n";
-    $welcome .=
-"|                                    |                                        |\n";
-    $welcome .=
-"|                              ENTER = MATTE                                  |\n";
-    $welcome .=
-"|                          w = save data to file                              |\n";
-    $welcome .=
-"|                           a = reset counters                                |\n";
-    $welcome .=
-"|                                  Q = Quit                                   |\n";
-    $welcome .=
-"|                                    |                                        |\n";
-    $welcome .=
-"|             <SHIFT>  plus any of these keys will delete that score          |\n";
+    $welcome
+        .= "-------------------------------------------------------------------------------\n";
+    $welcome
+        .= "|                     BLUE           |                   WHITE                |\n";
+    $welcome
+        .= "|  F = Attack                        |  J = Attack                            |\n";
+    $welcome
+        .= "|  D = Effective Attack              |  K = Effective Attack                  |\n";
+    $welcome
+        .= "|  V = Koka                          |  N = Koka                              |\n";
+    $welcome
+        .= "|  C = Yoka                          |  M = Yoka                              |\n";
+    $welcome
+        .= "|  X = Wazari                        |  < = Wazari                            |\n";
+    $welcome
+        .= "|  Z = Ippon                         |  > = Ippon                             |\n";
+    $welcome
+        .= "|  T = Receive Penalty               |   U = Receive Penalty                  |\n";
+    $welcome
+        .= "|                                    |                                        |\n";
+    $welcome
+        .= "|                              ENTER = MATTE                                  |\n";
+    $welcome
+        .= "|                          w = save data to file                              |\n";
+    $welcome
+        .= "|                           a = reset counters                                |\n";
+    $welcome
+        .= "|                                  Q = Quit                                   |\n";
+    $welcome
+        .= "|                                    |                                        |\n";
+    $welcome
+        .= "|             <SHIFT>  plus any of these keys will delete that score          |\n";
 
-    $welcome .=
-"-------------------------------------------------------------------------------\n";
+    $welcome
+        .= "-------------------------------------------------------------------------------\n";
     $welcome .= "Segments: $segments \n";
 
     return ($welcome);
@@ -269,14 +279,13 @@ sub print_results {
 
     my @months    = qw(Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec);
     my @week_days = qw(Sun Mon Tue Wed Thu Fri Sat Sun);
-    my (
-        $seconds,      $minute,      $hour,
+    my ($seconds,      $minute,      $hour,
         $day_of_month, $month,       $year_offset,
         $day_of_week,  $day_of_year, $day_light_savings
     ) = localtime;
     my $year = $BASEYEAR + $year_offset;
-    my $the_time =
-"$hour:$minute:$seconds, $week_days[$day_of_week] $months[$month] $day_of_month, $year";
+    my $the_time
+        = "$hour:$minute:$seconds, $week_days[$day_of_week] $months[$month] $day_of_month, $year";
     $results .= "Notation Time and Date\n$the_time\n\n";
 
     $results .= "Segments: $segments\n";

@@ -1,0 +1,5 @@
+--backup-and-modify-in-place
+--backup-file-extension=/
+--perl-best-practices
+--nostandard-output
+--no-blanks-before-comments
