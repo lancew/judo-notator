@@ -9,7 +9,7 @@ use Curses::UI;
 use Readonly;
 use IO::File;
 
-$OUTPUT_AUTOFLUSH = 1;
+local $OUTPUT_AUTOFLUSH = 1;
 
 # $Id$
 our $VERSION = qv('0.2.0');
@@ -42,27 +42,30 @@ our $VERSION = qv('0.2.0');
 # Global Variables
 # -----------------------------------------------
 
-my $run_flag = 1;
-
 my $segments = 0;
 my $active   = 0;
 my $events   = 0;
 
-my $blue_attack    = 0;
-my $blue_effattack = 0;
-my $blue_koka      = 0;
-my $blue_yuko      = 0;
-my $blue_wazari    = 0;
-my $blue_ippon     = 0;
-my $blue_penalty   = 0;
-
-my $white_attack    = 0;
-my $white_effattack = 0;
-my $white_koka      = 0;
-my $white_yuko      = 0;
-my $white_wazari    = 0;
-my $white_ippon     = 0;
-my $white_penalty   = 0;
+my %counters = (
+    blue => {
+        attack    => 0,
+        effattack => 0,
+        koka      => 0,
+        yuko      => 0,
+        wazari    => 0,
+        ippon     => 0,
+        penalty   => 0
+    },
+    white => {
+        attack    => 0,
+        effattack => 0,
+        koka      => 0,
+        yuko      => 0,
+        wazari    => 0,
+        ippon     => 0,
+        penalty   => 0
+    },
+);
 
 my $cui;
 my $win1;
@@ -84,7 +87,7 @@ if ( !caller ) {
 
 sub run {
 
-    $cui = new Curses::UI( -color_support => 1 );
+    $cui = Curses::UI->new( -color_support => 1 );
 
     $win1 = $cui->add(
         'win1', 'Window',
@@ -128,68 +131,239 @@ sub run {
     $cui->set_binding( \&save_results,                             'w' );
     $cui->set_binding( sub { reset_counters(); update_screen(); }, 'a' );
 
-    $cui->set_binding( sub { add_one_blue_attack(); update_screen(); }, 'f' );
-    $cui->set_binding( sub { remove_one_blue_attack(); update_screen(); },
-        'F' );
+    $cui->set_binding(
+        sub {
+            update( colour => 'blue', statistic => 'attack', mode => 'inc' ),
+                update_screen();
+        },
+        'f'
+    );
+    $cui->set_binding(
+        sub {
+            update( colour => 'blue', statistic => 'attack', mode => 'dec' ),
+                update_screen();
+        },
+        'F'
+    );
 
-    $cui->set_binding( sub { add_one_blue_effattack(); update_screen(); },
-        'd' );
-    $cui->set_binding( sub { remove_one_blue_effattack(); update_screen(); },
-        'D' );
+    $cui->set_binding(
+        sub {
+            update(
+                colour    => 'blue',
+                statistic => 'effattack',
+                mode      => 'inc'
+                ),
+                update_screen();
+        },
+        'd'
+    );
+    $cui->set_binding(
+        sub {
+            update(
+                colour    => 'blue',
+                statistic => 'effattack',
+                mode      => 'dec'
+                ),
+                update_screen();
+        },
+        'D'
+    );
 
-    $cui->set_binding( sub { add_one_blue_koka(); update_screen(); }, 'v' );
-    $cui->set_binding( sub { remove_one_blue_koka(); update_screen(); },
-        'V' );
+    $cui->set_binding(
+        sub {
+            update( colour => 'blue', statistic => 'koka', mode => 'inc' ),
+                update_screen();
+        },
+        'v'
+    );
+    $cui->set_binding(
+        sub {
+            update( colour => 'blue', statistic => 'koka', mode => 'dec' ),
+                update_screen();
+        },
+        'V'
+    );
 
-    $cui->set_binding( sub { add_one_blue_yuko(); update_screen(); }, 'c' );
-    $cui->set_binding( sub { remove_one_blue_yuko(); update_screen(); },
-        'C' );
+    $cui->set_binding(
+        sub {
+            update( colour => 'blue', statistic => 'yuko', mode => 'inc' ),
+                update_screen();
+        },
+        'c'
+    );
+    $cui->set_binding(
+        sub {
+            update( colour => 'blue', statistic => 'yuko', mode => 'dec' ),
+                update_screen();
+        },
+        'C'
+    );
 
-    $cui->set_binding( sub { add_one_blue_wazari(); update_screen(); }, 'x' );
-    $cui->set_binding( sub { remove_one_blue_wazari(); update_screen(); },
-        'X' );
+    $cui->set_binding(
+        sub {
+            update( colour => 'blue', statistic => 'wazari', mode => 'inc' ),
+                update_screen();
+        },
+        'x'
+    );
+    $cui->set_binding(
+        sub {
+            update( colour => 'blue', statistic => 'wazari', mode => 'dec' ),
+                update_screen();
+        },
+        'X'
+    );
 
-    $cui->set_binding( sub { add_one_blue_ippon(); update_screen(); }, 'z' );
-    $cui->set_binding( sub { remove_one_blue_ippon(); update_screen(); },
-        'Z' );
+    $cui->set_binding(
+        sub {
+            update( colour => 'blue', statistic => 'ippon', mode => 'inc' ),
+                update_screen();
+        },
+        'z'
+    );
+    $cui->set_binding(
+        sub {
+            update( colour => 'blue', statistic => 'ippon', mode => 'dec' ),
+                update_screen();
+        },
+        'Z'
+    );
 
-    $cui->set_binding( sub { add_one_blue_penalty(); update_screen(); },
-        't' );
-    $cui->set_binding( sub { remove_one_blue_penalty(); update_screen(); },
-        'T' );
+    $cui->set_binding(
+        sub {
+            update( colour => 'blue', statistic => 'penalty', mode => 'inc' ),
+                update_screen();
+        },
+        't'
+    );
+    $cui->set_binding(
+        sub {
+            update( colour => 'blue', statistic => 'penalty', mode => 'dec' ),
+                update_screen();
+        },
+        'T'
+    );
 
-    $cui->set_binding( sub { add_one_white_attack(); update_screen(); },
-        'j' );
-    $cui->set_binding( sub { remove_one_white_attack(); update_screen(); },
-        'J' );
+    $cui->set_binding(
+        sub {
+            update( colour => 'white', statistic => 'attack', mode => 'inc' ),
+                update_screen();
+        },
+        'j'
+    );
+    $cui->set_binding(
+        sub {
+            update( colour => 'white', statistic => 'attack', mode => 'dec' ),
+                update_screen();
+        },
+        'J'
+    );
 
-    $cui->set_binding( sub { add_one_white_effattack(); update_screen(); },
-        'k' );
-    $cui->set_binding( sub { remove_one_white_effattack(); update_screen(); },
-        'K' );
+    $cui->set_binding(
+        sub {
+            update(
+                colour    => 'white',
+                statistic => 'effattack',
+                mode      => 'inc'
+                ),
+                update_screen();
+        },
+        'k'
+    );
+    $cui->set_binding(
+        sub {
+            update(
+                colour    => 'white',
+                statistic => 'effattack',
+                mode      => 'dec'
+                ),
+                update_screen();
+        },
+        'K'
+    );
 
-    $cui->set_binding( sub { add_one_white_koka(); update_screen(); }, 'n' );
-    $cui->set_binding( sub { remove_one_white_koka(); update_screen(); },
-        'N' );
+    $cui->set_binding(
+        sub {
+            update( colour => 'white', statistic => 'koka', mode => 'inc' ),
+                update_screen();
+        },
+        'n'
+    );
+    $cui->set_binding(
+        sub {
+            update( colour => 'white', statistic => 'koka', mode => 'dec' ),
+                update_screen();
+        },
+        'N'
+    );
 
-    $cui->set_binding( sub { add_one_white_yuko(); update_screen(); }, 'm' );
-    $cui->set_binding( sub { remove_one_white_yuko(); update_screen(); },
-        'M' );
+    $cui->set_binding(
+        sub {
+            update( colour => 'white', statistic => 'yuko', mode => 'inc' ),
+                update_screen();
+        },
+        'm'
+    );
+    $cui->set_binding(
+        sub {
+            update( colour => 'white', statistic => 'yuko', mode => 'dec' ),
+                update_screen();
+        },
+        'M'
+    );
 
-    $cui->set_binding( sub { add_one_white_wazari(); update_screen(); },
-        q{,} );
-    $cui->set_binding( sub { remove_one_white_wazari(); update_screen(); },
-        q{<} );
+    $cui->set_binding(
+        sub {
+            update( colour => 'white', statistic => 'wazari', mode => 'inc' ),
+                update_screen();
+        },
+        ','
+    );
+    $cui->set_binding(
+        sub {
+            update( colour => 'white', statistic => 'wazari', mode => 'dec' ),
+                update_screen();
+        },
+        '<'
+    );
 
-    $cui->set_binding( sub { add_one_white_ippon(); update_screen(); },
-        q{.} );
-    $cui->set_binding( sub { remove_one_white_ippon(); update_screen(); },
-        q{>} );
+    $cui->set_binding(
+        sub {
+            update( colour => 'white', statistic => 'ippon', mode => 'inc' ),
+                update_screen();
+        },
+        '.'
+    );
+    $cui->set_binding(
+        sub {
+            update( colour => 'white', statistic => 'ippon', mode => 'dec' ),
+                update_screen();
+        },
+        '>'
+    );
 
-    $cui->set_binding( sub { add_one_white_penalty(); update_screen(); },
-        'u' );
-    $cui->set_binding( sub { remove_one_white_penalty(); update_screen(); },
-        'U' );
+    $cui->set_binding(
+        sub {
+            update(
+                colour    => 'white',
+                statistic => 'penalty',
+                mode      => 'inc'
+                ),
+                update_screen();
+        },
+        'u'
+    );
+    $cui->set_binding(
+        sub {
+            update(
+                colour    => 'white',
+                statistic => 'penalty',
+                mode      => 'dec'
+                ),
+                update_screen();
+        },
+        'U'
+    );
 
     $cui->set_binding( sub { add_one_matte(); update_screen(); }, '343' );
 
@@ -253,21 +427,26 @@ sub print_menu {
 sub reset_counters {
     $segments = 1;
 
-    $blue_attack    = 0;
-    $blue_effattack = 0;
-    $blue_koka      = 0;
-    $blue_yuko      = 0;
-    $blue_wazari    = 0;
-    $blue_ippon     = 0;
-    $blue_penalty   = 0;
-
-    $white_attack    = 0;
-    $white_effattack = 0;
-    $white_koka      = 0;
-    $white_yuko      = 0;
-    $white_wazari    = 0;
-    $white_ippon     = 0;
-    $white_penalty   = 0;
+    %counters = (
+        blue => {
+            attack    => 0,
+            effattack => 0,
+            koka      => 0,
+            yuko      => 0,
+            wazari    => 0,
+            ippon     => 0,
+            shido     => 0
+        },
+        white => {
+            attack    => 0,
+            effattack => 0,
+            koka      => 0,
+            yuko      => 0,
+            wazari    => 0,
+            ippon     => 0,
+            shido     => 0
+        },
+    );
 
     $events = 0;
     return $segments;
@@ -290,52 +469,46 @@ sub print_results {
 
     $results .= "Segments: $segments\n";
     $results .= "\nBLUE\n";
-    $results .= "Ineffective Attacks: $blue_attack\n";
-    $results .= "Effective Attacks: $blue_effattack\n";
-    $results .= "Koka: $blue_koka\n";
-    $results .= "Yuka: $blue_yuko\n";
-    $results .= "Wazari: $blue_wazari\n";
-    $results .= "Ippon: $blue_ippon\n";
-    $results .= "Penalty: $blue_penalty\n";
+    $results .= "Ineffective Attacks: $counters{blue}{attack}\n";
+    $results .= "Effective Attacks: $counters{blue}{effattack}\n";
+    $results .= "Koka: $counters{blue}{koka}\n";
+    $results .= "Yuko: $counters{blue}{yuko}\n";
+    $results .= "Wazari: $counters{blue}{wazari}\n";
+    $results .= "Ippon: $counters{blue}{ippon}\n";
+    $results .= "Penalty: $counters{blue}{penalty}\n";
     $results .= "\nWHITE\n";
-    $results .= "Ineffective Attacks: $white_attack\n";
-    $results .= "Effective Attacks: $white_effattack\n";
-    $results .= "Koka: $white_koka\n";
-    $results .= "Yuka: $white_yuko\n";
-    $results .= "Wazari: $white_wazari\n";
-    $results .= "Ippon: $white_ippon\n";
-    $results .= "Penalty: $white_penalty\n\n\n";
+    $results .= "Ineffective Attacks: $counters{white}{attack}\n";
+    $results .= "Effective Attacks: $counters{white}{effattack}\n";
+    $results .= "Koka: $counters{white}{koka}\n";
+    $results .= "Yuko: $counters{white}{yuko}\n";
+    $results .= "Wazari: $counters{white}{wazari}\n";
+    $results .= "Ippon: $counters{white}{ippon}\n";
+    $results .= "Penalty: $counters{white}{penalty}\n\n\n";
     return ($results);
-}
-
-sub dumb_test {
-    my $test = 'yes';
-    return ($test);
-
 }
 
 sub show_blue {
     my $temp = " \n";
-    $temp .= "Ineffective Attacks: $blue_attack\n";
-    $temp .= "Effective Attacks: $blue_effattack\n";
-    $temp .= "Koka: $blue_koka\n";
-    $temp .= "Yuka: $blue_yuko\n";
-    $temp .= "Wazari: $blue_wazari\n";
-    $temp .= "Ippon: $blue_ippon\n";
-    $temp .= "Penalty: $blue_penalty\n";
+    $temp .= "Ineffective Attacks: $counters{blue}{attack}\n";
+    $temp .= "Effective Attacks: $counters{blue}{effattack}\n";
+    $temp .= "Koka: $counters{blue}{koka}\n";
+    $temp .= "Yuko: $counters{blue}{yuko}\n";
+    $temp .= "Wazari: $counters{blue}{wazari}\n";
+    $temp .= "Ippon: $counters{blue}{ippon}\n";
+    $temp .= "Penalty: $counters{blue}{penalty}\n";
     return $temp;
 
 }
 
 sub show_white {
     my $temp = " \n";
-    $temp .= "Ineffective Attacks: $white_attack\n";
-    $temp .= "Effective Attacks: $white_effattack\n";
-    $temp .= "Koka: $white_koka\n";
-    $temp .= "Yuka: $white_yuko\n";
-    $temp .= "Wazari: $white_wazari\n";
-    $temp .= "Ippon: $white_ippon\n";
-    $temp .= "Penalty: $white_penalty\n\n\n";
+    $temp .= "Ineffective Attacks: $counters{white}{attack}\n";
+    $temp .= "Effective Attacks: $counters{white}{effattack}\n";
+    $temp .= "Koka: $counters{white}{koka}\n";
+    $temp .= "Yuko: $counters{white}{yuko}\n";
+    $temp .= "Wazari: $counters{white}{wazari}\n";
+    $temp .= "Ippon: $counters{white}{ippon}\n";
+    $temp .= "Penalty: $counters{white}{penalty}\n\n\n";
     return $temp;
 
 }
@@ -343,16 +516,13 @@ sub show_white {
 sub results {
     my $results;
 
-    #$results .= show_blue();
-    #$results .= show_white();
-    #$results .= 'Segments;' . $segments;
     $results = print_results();
     return $results;
 }
 
 sub save_results {
     my $filename = time() . '.txt';
-    my $fh       = new IO::File "> $filename";
+    my $fh       = IO::File->new("> $filename");
     if ( defined $fh ) {
         print {$fh} results() or croak('Unable to save');
         $fh->close;
@@ -367,202 +537,15 @@ sub save_results {
 
 }
 
-sub add_one_blue_attack {
-    $blue_attack++;
-
-    return ($blue_attack);
-
-}
-
-sub remove_one_blue_attack {
-    $blue_attack--;
-
-    return ($blue_attack);
-
-}
-
-sub add_one_blue_effattack {
-    $blue_effattack++;
-
-    return ($blue_effattack);
-
-}
-
-sub remove_one_blue_effattack {
-    $blue_effattack--;
-
-    return ($blue_effattack);
-
-}
-
-sub add_one_blue_koka {
-    $blue_koka++;
-
-    return ($blue_koka);
-
-}
-
-sub remove_one_blue_koka {
-    $blue_koka--;
-
-    return ($blue_koka);
-
-}
-
-sub add_one_blue_yuko {
-    $blue_yuko++;
-
-    return ($blue_yuko);
-
-}
-
-sub remove_one_blue_yuko {
-    $blue_yuko--;
-
-    return ($blue_yuko);
-
-}
-
-sub add_one_blue_wazari {
-    $blue_wazari++;
-
-    return ($blue_wazari);
-
-}
-
-sub remove_one_blue_wazari {
-    $blue_wazari--;
-
-    return ($blue_wazari);
-
-}
-
-sub add_one_blue_ippon {
-    $blue_ippon++;
-
-    return ($blue_ippon);
-
-}
-
-sub remove_one_blue_ippon {
-    $blue_ippon--;
-
-    return ($blue_ippon);
-
-}
-
-sub add_one_blue_penalty {
-    $blue_penalty++;
-
-    return ($blue_penalty);
-
-}
-
-sub remove_one_blue_penalty {
-    $blue_penalty--;
-
-    return ($blue_penalty);
-
-}
-
-# ------------------
-
-sub add_one_white_attack {
-    $white_attack++;
-
-    return ($white_attack);
-
-}
-
-sub remove_one_white_attack {
-    $white_attack--;
-
-    return ($white_attack);
-
-}
-
-sub add_one_white_effattack {
-    $white_effattack++;
-
-    return ($white_effattack);
-
-}
-
-sub remove_one_white_effattack {
-    $white_effattack--;
-
-    return ($white_effattack);
-
-}
-
-sub add_one_white_koka {
-    $white_koka++;
-
-    return ($white_koka);
-
-}
-
-sub remove_one_white_koka {
-    $white_koka--;
-
-    return ($white_koka);
-
-}
-
-sub add_one_white_yuko {
-    $white_yuko++;
-
-    return ($white_yuko);
-
-}
-
-sub remove_one_white_yuko {
-    $white_yuko--;
-
-    return ($white_yuko);
-
-}
-
-sub add_one_white_wazari {
-    $white_wazari++;
-
-    return ($white_wazari);
-
-}
-
-sub remove_one_white_wazari {
-    $white_wazari--;
-
-    return ($white_wazari);
-
-}
-
-sub add_one_white_ippon {
-    $white_ippon++;
-
-    return ($white_ippon);
-
-}
-
-sub remove_one_white_ippon {
-    $white_ippon--;
-
-    return ($white_ippon);
-
-}
-
-sub add_one_white_penalty {
-    $white_penalty++;
-
-    return ($white_penalty);
-
-}
-
-sub remove_one_white_penalty {
-    $white_penalty--;
-
-    return ($white_penalty);
-
+sub update {
+    my (%args) = @_;
+
+    if ( $args{'mode'} eq 'inc' ) {
+        $counters{ $args{'colour'} }{ $args{'statistic'} }++;
+    }
+    else {
+        $counters{ $args{'colour'} }{ $args{'statistic'} }--;
+    }
 }
 
 # ------------------

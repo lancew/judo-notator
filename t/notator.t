@@ -4,10 +4,7 @@ use warnings;
 use Test::More qw(no_plan);
 use Test::Output;
 
-require './notator.pl';
-
-# Dumb Test
-is( Local::Notator::dumb_test(), 'yes', 'dumb_test is OK' );
+require './Notator.pl';
 
 # Test subs
 # ----------------------
