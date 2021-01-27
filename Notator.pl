@@ -131,239 +131,52 @@ sub run {
     $cui->set_binding( \&save_results,                             'w' );
     $cui->set_binding( sub { reset_counters(); update_screen(); }, 'a' );
 
-    $cui->set_binding(
-        sub {
-            update( colour => 'blue', statistic => 'attack', mode => 'inc' ),
-                update_screen();
-        },
-        'f'
-    );
-    $cui->set_binding(
-        sub {
-            update( colour => 'blue', statistic => 'attack', mode => 'dec' ),
-                update_screen();
-        },
-        'F'
+    my @keys = (
+        [ 'blue', 'attack',    'inc', 'f' ],
+        [ 'blue', 'attack',    'dec', 'F' ],
+        [ 'blue', 'effattack', 'inc', 'd' ],
+        [ 'blue', 'effattack', 'dec', 'D' ],
+        [ 'blue', 'koka',      'inc', 'v' ],
+        [ 'blue', 'koka',      'dec', 'V' ],
+        [ 'blue', 'yuko',      'inc', 'c' ],
+        [ 'blue', 'yuko',      'dec', 'C' ],
+        [ 'blue', 'wazari',    'inc', 'x' ],
+        [ 'blue', 'wazari',    'dec', 'X' ],
+        [ 'blue', 'ippon',     'inc', 'z' ],
+        [ 'blue', 'ippon',     'dec', 'Z' ],
+        [ 'blue', 'penalty',   'inc', 't' ],
+        [ 'blue', 'penalty',   'dec', 'T' ],
+
+        [ 'white', 'attack',    'inc', 'j' ],
+        [ 'white', 'attack',    'dec', 'J' ],
+        [ 'white', 'effattack', 'inc', 'k' ],
+        [ 'white', 'effattack', 'dec', 'K' ],
+        [ 'white', 'koka',      'inc', 'n' ],
+        [ 'white', 'koka',      'dec', 'N' ],
+        [ 'white', 'yuko',      'inc', 'm' ],
+        [ 'white', 'yuko',      'dec', 'M' ],
+        [ 'white', 'wazari',    'inc', ',' ],
+        [ 'white', 'wazari',    'dec', '<' ],
+        [ 'white', 'ippon',     'inc', '.' ],
+        [ 'white', 'ippon',     'dec', '>' ],
+        [ 'white', 'penalty',   'inc', 'u' ],
+        [ 'white', 'penalty',   'dec', 'U' ],
+
     );
 
-    $cui->set_binding(
-        sub {
-            update(
-                colour    => 'blue',
-                statistic => 'effattack',
-                mode      => 'inc'
-                ),
-                update_screen();
-        },
-        'd'
-    );
-    $cui->set_binding(
-        sub {
-            update(
-                colour    => 'blue',
-                statistic => 'effattack',
-                mode      => 'dec'
-                ),
-                update_screen();
-        },
-        'D'
-    );
-
-    $cui->set_binding(
-        sub {
-            update( colour => 'blue', statistic => 'koka', mode => 'inc' ),
-                update_screen();
-        },
-        'v'
-    );
-    $cui->set_binding(
-        sub {
-            update( colour => 'blue', statistic => 'koka', mode => 'dec' ),
-                update_screen();
-        },
-        'V'
-    );
-
-    $cui->set_binding(
-        sub {
-            update( colour => 'blue', statistic => 'yuko', mode => 'inc' ),
-                update_screen();
-        },
-        'c'
-    );
-    $cui->set_binding(
-        sub {
-            update( colour => 'blue', statistic => 'yuko', mode => 'dec' ),
-                update_screen();
-        },
-        'C'
-    );
-
-    $cui->set_binding(
-        sub {
-            update( colour => 'blue', statistic => 'wazari', mode => 'inc' ),
-                update_screen();
-        },
-        'x'
-    );
-    $cui->set_binding(
-        sub {
-            update( colour => 'blue', statistic => 'wazari', mode => 'dec' ),
-                update_screen();
-        },
-        'X'
-    );
-
-    $cui->set_binding(
-        sub {
-            update( colour => 'blue', statistic => 'ippon', mode => 'inc' ),
-                update_screen();
-        },
-        'z'
-    );
-    $cui->set_binding(
-        sub {
-            update( colour => 'blue', statistic => 'ippon', mode => 'dec' ),
-                update_screen();
-        },
-        'Z'
-    );
-
-    $cui->set_binding(
-        sub {
-            update( colour => 'blue', statistic => 'penalty', mode => 'inc' ),
-                update_screen();
-        },
-        't'
-    );
-    $cui->set_binding(
-        sub {
-            update( colour => 'blue', statistic => 'penalty', mode => 'dec' ),
-                update_screen();
-        },
-        'T'
-    );
-
-    $cui->set_binding(
-        sub {
-            update( colour => 'white', statistic => 'attack', mode => 'inc' ),
-                update_screen();
-        },
-        'j'
-    );
-    $cui->set_binding(
-        sub {
-            update( colour => 'white', statistic => 'attack', mode => 'dec' ),
-                update_screen();
-        },
-        'J'
-    );
-
-    $cui->set_binding(
-        sub {
-            update(
-                colour    => 'white',
-                statistic => 'effattack',
-                mode      => 'inc'
-                ),
-                update_screen();
-        },
-        'k'
-    );
-    $cui->set_binding(
-        sub {
-            update(
-                colour    => 'white',
-                statistic => 'effattack',
-                mode      => 'dec'
-                ),
-                update_screen();
-        },
-        'K'
-    );
-
-    $cui->set_binding(
-        sub {
-            update( colour => 'white', statistic => 'koka', mode => 'inc' ),
-                update_screen();
-        },
-        'n'
-    );
-    $cui->set_binding(
-        sub {
-            update( colour => 'white', statistic => 'koka', mode => 'dec' ),
-                update_screen();
-        },
-        'N'
-    );
-
-    $cui->set_binding(
-        sub {
-            update( colour => 'white', statistic => 'yuko', mode => 'inc' ),
-                update_screen();
-        },
-        'm'
-    );
-    $cui->set_binding(
-        sub {
-            update( colour => 'white', statistic => 'yuko', mode => 'dec' ),
-                update_screen();
-        },
-        'M'
-    );
-
-    $cui->set_binding(
-        sub {
-            update( colour => 'white', statistic => 'wazari', mode => 'inc' ),
-                update_screen();
-        },
-        ','
-    );
-    $cui->set_binding(
-        sub {
-            update( colour => 'white', statistic => 'wazari', mode => 'dec' ),
-                update_screen();
-        },
-        '<'
-    );
-
-    $cui->set_binding(
-        sub {
-            update( colour => 'white', statistic => 'ippon', mode => 'inc' ),
-                update_screen();
-        },
-        '.'
-    );
-    $cui->set_binding(
-        sub {
-            update( colour => 'white', statistic => 'ippon', mode => 'dec' ),
-                update_screen();
-        },
-        '>'
-    );
-
-    $cui->set_binding(
-        sub {
-            update(
-                colour    => 'white',
-                statistic => 'penalty',
-                mode      => 'inc'
-                ),
-                update_screen();
-        },
-        'u'
-    );
-    $cui->set_binding(
-        sub {
-            update(
-                colour    => 'white',
-                statistic => 'penalty',
-                mode      => 'dec'
-                ),
-                update_screen();
-        },
-        'U'
-    );
+    for my $k (@keys) {
+        $cui->set_binding(
+            sub {
+                update(
+                    colour    => $k->[0],
+                    statistic => $k->[1],
+                    mode      => $k->[2],
+                    ),
+                    update_screen();
+            },
+            $k->[3]
+        );
+    }
 
     $cui->set_binding( sub { add_one_matte(); update_screen(); }, '343' );
 
