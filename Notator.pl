@@ -195,44 +195,27 @@ sub run {
 # -----------------------------------------------
 
 sub print_menu {
-    my $welcome;
+    my $welcome = <<"MENU_TEXT";
+-------------------------------------------------------------------------------
+|                     BLUE           |                   WHITE                |
+|  F = Attack                        |  J = Attack                            |
+|  D = Effective Attack              |  K = Effective Attack                  |
+|  V = Koka                          |  N = Koka                              |
+|  C = Yoka                          |  M = Yoka                              |
+|  X = Wazari                        |  < = Wazari                            |
+|  Z = Ippon                         |  > = Ippon                             |
+|  T = Receive Penalty               |   U = Receive Penalty                  |
+|                                    |                                        |
+|                              ENTER = MATTE                                  |
+|                          w = save data to file                              |
+|                           a = reset counters                                |
+|                                  Q = Quit                                   |
+|                                    |                                        |
+|             <SHIFT>  plus any of these keys will delete that score          |
+-------------------------------------------------------------------------------
+  Segments: $segments 
+MENU_TEXT
 
-    $welcome
-        .= "-------------------------------------------------------------------------------\n";
-    $welcome
-        .= "|                     BLUE           |                   WHITE                |\n";
-    $welcome
-        .= "|  F = Attack                        |  J = Attack                            |\n";
-    $welcome
-        .= "|  D = Effective Attack              |  K = Effective Attack                  |\n";
-    $welcome
-        .= "|  V = Koka                          |  N = Koka                              |\n";
-    $welcome
-        .= "|  C = Yoka                          |  M = Yoka                              |\n";
-    $welcome
-        .= "|  X = Wazari                        |  < = Wazari                            |\n";
-    $welcome
-        .= "|  Z = Ippon                         |  > = Ippon                             |\n";
-    $welcome
-        .= "|  T = Receive Penalty               |   U = Receive Penalty                  |\n";
-    $welcome
-        .= "|                                    |                                        |\n";
-    $welcome
-        .= "|                              ENTER = MATTE                                  |\n";
-    $welcome
-        .= "|                          w = save data to file                              |\n";
-    $welcome
-        .= "|                           a = reset counters                                |\n";
-    $welcome
-        .= "|                                  Q = Quit                                   |\n";
-    $welcome
-        .= "|                                    |                                        |\n";
-    $welcome
-        .= "|             <SHIFT>  plus any of these keys will delete that score          |\n";
-
-    $welcome
-        .= "-------------------------------------------------------------------------------\n";
-    $welcome .= "Segments: $segments \n";
 
     return ($welcome);
 }
@@ -266,9 +249,6 @@ sub reset_counters {
 }
 
 sub print_results {
-    my $results;
-    $results .= "\n\n";
-
     my @months    = qw(Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec);
     my @week_days = qw(Sun Mon Tue Wed Thu Fri Sat Sun);
     my ($seconds,      $minute,      $hour,
@@ -278,50 +258,65 @@ sub print_results {
     my $year = $BASEYEAR + $year_offset;
     my $the_time
         = "$hour:$minute:$seconds, $week_days[$day_of_week] $months[$month] $day_of_month, $year";
-    $results .= "Notation Time and Date\n$the_time\n\n";
+    my $results = <<"RESULT_TEXT";
 
-    $results .= "Segments: $segments\n";
-    $results .= "\nBLUE\n";
-    $results .= "Ineffective Attacks: $counters{blue}{attack}\n";
-    $results .= "Effective Attacks: $counters{blue}{effattack}\n";
-    $results .= "Koka: $counters{blue}{koka}\n";
-    $results .= "Yuko: $counters{blue}{yuko}\n";
-    $results .= "Wazari: $counters{blue}{wazari}\n";
-    $results .= "Ippon: $counters{blue}{ippon}\n";
-    $results .= "Penalty: $counters{blue}{penalty}\n";
-    $results .= "\nWHITE\n";
-    $results .= "Ineffective Attacks: $counters{white}{attack}\n";
-    $results .= "Effective Attacks: $counters{white}{effattack}\n";
-    $results .= "Koka: $counters{white}{koka}\n";
-    $results .= "Yuko: $counters{white}{yuko}\n";
-    $results .= "Wazari: $counters{white}{wazari}\n";
-    $results .= "Ippon: $counters{white}{ippon}\n";
-    $results .= "Penalty: $counters{white}{penalty}\n\n\n";
+Notation Time and Date
+$the_time
+
+Segments: $segments
+
+BLUE
+Ineffective Attacks: $counters{blue}{attack}
+Effective Attacks: $counters{blue}{effattack}
+Koka: $counters{blue}{koka}
+Yuko: $counters{blue}{yuko}
+Wazari: $counters{blue}{wazari}
+Ippon: $counters{blue}{ippon}
+Penalty: $counters{blue}{penalty}
+
+WHITE
+Ineffective Attacks: $counters{white}{attack}
+Effective Attacks: $counters{white}{effattack}
+Koka: $counters{white}{koka}
+Yuko: $counters{white}{yuko}
+Wazari: $counters{white}{wazari}
+Ippon: $counters{white}{ippon}
+Penalty: $counters{white}{penalty}
+
+RESULT_TEXT
+
     return ($results);
 }
 
 sub show_blue {
-    my $temp = " \n";
-    $temp .= "Ineffective Attacks: $counters{blue}{attack}\n";
-    $temp .= "Effective Attacks: $counters{blue}{effattack}\n";
-    $temp .= "Koka: $counters{blue}{koka}\n";
-    $temp .= "Yuko: $counters{blue}{yuko}\n";
-    $temp .= "Wazari: $counters{blue}{wazari}\n";
-    $temp .= "Ippon: $counters{blue}{ippon}\n";
-    $temp .= "Penalty: $counters{blue}{penalty}\n";
+    my $temp = <<"TEMP_TEXT";
+
+Ineffective Attacks: $counters{blue}{attack}
+Effective Attacks: $counters{blue}{effattack}
+Koka: $counters{blue}{koka}
+Yuko: $counters{blue}{yuko}
+Wazari: $counters{blue}{wazari}
+Ippon: $counters{blue}{ippon}
+Penalty: $counters{blue}{penalty}
+
+TEMP_TEXT
+
     return $temp;
 
 }
 
 sub show_white {
-    my $temp = " \n";
-    $temp .= "Ineffective Attacks: $counters{white}{attack}\n";
-    $temp .= "Effective Attacks: $counters{white}{effattack}\n";
-    $temp .= "Koka: $counters{white}{koka}\n";
-    $temp .= "Yuko: $counters{white}{yuko}\n";
-    $temp .= "Wazari: $counters{white}{wazari}\n";
-    $temp .= "Ippon: $counters{white}{ippon}\n";
-    $temp .= "Penalty: $counters{white}{penalty}\n\n\n";
+    my $temp = <<"TEMP_TEXT";
+
+Ineffective Attacks: $counters{white}{attack}
+Effective Attacks: $counters{white}{effattack}
+Koka: $counters{white}{koka}
+Yuko: $counters{white}{yuko}
+Wazari: $counters{white}{wazari}
+Ippon: $counters{white}{ippon}
+Penalty: $counters{white}{penalty}
+
+TEMP_TEXT
     return $temp;
 
 }
